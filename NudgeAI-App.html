@@ -136,12 +136,10 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 .pro-btn{width:100%;padding:12px;border-radius:14px;background:linear-gradient(135deg,var(--a1),#9b6bff);border:none;color:#fff;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:opacity .15s;}
 .pro-btn:active{opacity:.85;}
 .tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:72px;background:rgba(9,9,15,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-around;padding:0 8px 8px;z-index:1000;}
-.tab{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;cursor:pointer;padding:8px 4px;border-radius:14px;transition:background .15s, transform .15s;}
-.tab.animate{animation:tab-press .28s cubic-bezier(0.34,1.56,0.64,1);}
+.tab{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;cursor:pointer;padding:8px 4px;border-radius:14px;transition:background .15s;}
 .tab-icon{font-size:20px;line-height:1;}
 .tab-lbl{font-size:10px;color:var(--tm);font-weight:500;transition:color .15s;}
 .tab.on .tab-lbl{color:var(--t);}
-@keyframes tab-press{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
 .tab-icon-wrap{position:relative;}
 .tab-badge{position:absolute;top:-4px;right:-6px;width:14px;height:14px;border-radius:50%;background:var(--a2);font-size:8px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;}
 .ai-box{margin:10px 16px 0;background:var(--s2);border:1px solid var(--b);border-radius:var(--r2);padding:14px;}
@@ -214,16 +212,16 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 <div class="onboard active" id="ob-screen">
   <div id="ob1">
     <div class="ob-step">Step 1 of 3</div>
-    <div class="ob-emoji">🧿</div>
+    <div class="ob-emoji">👋</div>
     <div class="ob-title">What are your <span class="grad-text">goals?</span></div>
     <div class="ob-sub">Pick what you want to improve. Nudge AI will tailor every suggestion.</div>
     <div class="ob-grid" id="goal-grid">
-      <div class="ob-item sel" data-goal="money"><div class="ob-item-icon">🪙</div><div class="ob-item-name">Save Money</div><div class="ob-item-desc">Track spending habits</div></div>
-      <div class="ob-item sel" data-goal="study"><div class="ob-item-icon">🧠</div><div class="ob-item-name">Study More</div><div class="ob-item-desc">Focus & deep work</div></div>
-      <div class="ob-item" data-goal="fit"><div class="ob-item-icon">⚡</div><div class="ob-item-name">Get Fit</div><div class="ob-item-desc">Move consistently</div></div>
-      <div class="ob-item sel" data-goal="sleep"><div class="ob-item-icon">🌙</div><div class="ob-item-name">Sleep Better</div><div class="ob-item-desc">Wind down routine</div></div>
-      <div class="ob-item" data-goal="traffic"><div class="ob-item-icon">🛸</div><div class="ob-item-name">Beat Traffic</div><div class="ob-item-desc">Never late again</div></div>
-      <div class="ob-item" data-goal="social"><div class="ob-item-icon">🌌</div><div class="ob-item-name">Less Screen</div><div class="ob-item-desc">Scroll less, live more</div></div>
+      <div class="ob-item sel" data-goal="money"><div class="ob-item-icon">💰</div><div class="ob-item-name">Save Money</div><div class="ob-item-desc">Track spending habits</div></div>
+      <div class="ob-item sel" data-goal="study"><div class="ob-item-icon">📚</div><div class="ob-item-name">Study More</div><div class="ob-item-desc">Focus & deep work</div></div>
+      <div class="ob-item" data-goal="fit"><div class="ob-item-icon">🏃</div><div class="ob-item-name">Get Fit</div><div class="ob-item-desc">Move consistently</div></div>
+      <div class="ob-item sel" data-goal="sleep"><div class="ob-item-icon">😴</div><div class="ob-item-name">Sleep Better</div><div class="ob-item-desc">Wind down routine</div></div>
+      <div class="ob-item" data-goal="traffic"><div class="ob-item-icon">🚗</div><div class="ob-item-name">Beat Traffic</div><div class="ob-item-desc">Never late again</div></div>
+      <div class="ob-item" data-goal="social"><div class="ob-item-icon">📵</div><div class="ob-item-name">Less Screen</div><div class="ob-item-desc">Scroll less, live more</div></div>
     </div>
     <div class="ob-dots"><div class="ob-dot on"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
     <button class="ob-btn" onclick="obNext(2)">Continue →</button>
@@ -234,20 +232,20 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
     <div class="ob-title">Choose your <span class="grad-text">AI vibe.</span></div>
     <div class="ob-sub">Your AI companion will nudge you in this style every day.</div>
     <div class="persona-sel-grid" id="persona-sel">
-      <div class="persona-sel-item sel" data-persona="chill"><div class="psi-em">🧊</div><div><div class="psi-name">Chill</div><div class="psi-desc">Calm, friendly, zero pressure. Perfect if you hate being told what to do.</div></div></div>
-      <div class="persona-sel-item" data-persona="coach"><div class="psi-em">⚡</div><div><div class="psi-name">Coach</div><div class="psi-desc">Motivational, high-energy, goal-obsessed. Pushes you when you need it.</div></div></div>
-      <div class="persona-sel-item" data-persona="savage"><div class="psi-em">🛸</div><div><div class="psi-name">Savage</div><div class="psi-desc">Funny, slightly harsh, very shareable. Built for people who like tough love.</div></div></div>
+      <div class="persona-sel-item sel" data-persona="chill"><div class="psi-em">😌</div><div><div class="psi-name">Chill</div><div class="psi-desc">Calm, friendly, zero pressure. Perfect if you hate being told what to do.</div></div></div>
+      <div class="persona-sel-item" data-persona="coach"><div class="psi-em">💪</div><div><div class="psi-name">Coach</div><div class="psi-desc">Motivational, high-energy, goal-obsessed. Pushes you when you need it.</div></div></div>
+      <div class="persona-sel-item" data-persona="savage"><div class="psi-em">🔥</div><div><div class="psi-name">Savage</div><div class="psi-desc">Funny, slightly harsh, very shareable. Built for people who like tough love.</div></div></div>
     </div>
     <div class="ob-dots"><div class="ob-dot"></div><div class="ob-dot on"></div><div class="ob-dot"></div></div>
     <button class="ob-btn" onclick="obNext(3)">Continue →</button>
   </div>
   <div id="ob3" style="display:none;flex-direction:column;flex:1;">
     <div class="ob-step">Step 3 of 3</div>
-    <div class="ob-emoji">�️</div>
+    <div class="ob-emoji">📍</div>
     <div class="ob-title">Enable <span class="grad-text">location.</span></div>
     <div class="ob-sub">Nudge AI uses your location to warn you about traffic before you're late — and alert you when you're near a spending zone on a savings day.</div>
     <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r2);padding:16px;margin-bottom:16px;">
-      <div style="display:flex;gap:10px;margin-bottom:12px;"><div style="font-size:20px;">🛰️</div><div><div style="font-size:13px;font-weight:600;">Traffic alerts</div><div style="font-size:11px;color:var(--tm);">"Traffic is heavy. Leave now or you'll be late."</div></div></div>
+      <div style="display:flex;gap:10px;margin-bottom:12px;"><div style="font-size:20px;">🚦</div><div><div style="font-size:13px;font-weight:600;">Traffic alerts</div><div style="font-size:11px;color:var(--tm);">"Traffic is heavy. Leave now or you'll be late."</div></div></div>
       <div style="display:flex;gap:10px;margin-bottom:12px;"><div style="font-size:20px;">🏪</div><div><div style="font-size:13px;font-weight:600;">Spending zone detection</div><div style="font-size:11px;color:var(--tm);">"You're 0.2mi from the mall. Savings goal active today."</div></div></div>
       <div style="display:flex;gap:10px;"><div style="font-size:20px;">🔋</div><div><div style="font-size:13px;font-weight:600;">Battery friendly</div><div style="font-size:11px;color:var(--tm);">Uses significant-change mode. Private & on-device.</div></div></div>
     </div>
@@ -290,11 +288,11 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div class="stats">
     <div class="stat"><div class="stat-icon">⏱</div><div class="stat-val" style="color:var(--a4);">2h 14m</div><div class="stat-lbl">Screen today</div></div>
     <div class="stat"><div class="stat-icon">💸</div><div class="stat-val" style="color:var(--a3);">$18</div><div class="stat-lbl">Spent today</div></div>
-    <div class="stat"><div class="stat-icon">🌌</div><div class="stat-val" style="color:var(--a2);">4</div><div class="stat-lbl">Day streak</div></div>
+    <div class="stat"><div class="stat-icon">🔥</div><div class="stat-val" style="color:var(--a2);">4</div><div class="stat-lbl">Day streak</div></div>
   </div>
   <div class="loc-widget">
     <div class="loc-header">
-      <div style="display:flex;align-items:center;"><div class="loc-dot"></div><div class="loc-name" style="color:var(--a3);">�️ Downtown · Moving</div></div>
+      <div style="display:flex;align-items:center;"><div class="loc-dot"></div><div class="loc-name" style="color:var(--a3);">📍 Downtown · Moving</div></div>
       <div class="loc-update">30s ago</div>
     </div>
     <div class="loc-grid">
@@ -314,9 +312,9 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   </div>
   <div class="smini" style="margin-bottom:10px;">
     <div class="smini-title">Recent nudges</div>
-    <div class="nudge-item" onclick="goTab('feed')"><div class="ni-emoji">�️</div><div><div class="ni-txt">"Traffic is clear on Oak Ave — faster than usual this morning."</div><div class="ni-time">8:55 AM · Location</div></div></div>
+    <div class="nudge-item" onclick="goTab('feed')"><div class="ni-emoji">🚦</div><div><div class="ni-txt">"Traffic is clear on Oak Ave — faster than usual this morning."</div><div class="ni-time">8:55 AM · Location</div></div></div>
     <div class="nudge-item" onclick="goTab('feed')"><div class="ni-emoji">☕</div><div><div class="ni-txt">"You planned to skip coffee shops this week..."</div><div class="ni-time">8:42 AM · Spending</div></div></div>
-    <div class="nudge-item" onclick="goTab('feed')"><div class="ni-emoji">🌙</div><div><div class="ni-txt">"11 PM — you said you'd sleep by 10:30."</div><div class="ni-time">Yesterday</div></div></div>
+    <div class="nudge-item" onclick="goTab('feed')"><div class="ni-emoji">😴</div><div><div class="ni-txt">"11 PM — you said you'd sleep by 10:30."</div><div class="ni-time">Yesterday</div></div></div>
   </div>
   <button class="ask-ai-btn" onclick="openAskAI()">✦ Ask your AI companion anything ↗</button>
   <div class="ai-box" id="ai-box" style="display:none;">
@@ -332,50 +330,50 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div class="hdr"><div class="hdr-title">Nudge <span class="grad-text">Feed</span></div><div class="hdr-sub">All your nudges in one place</div></div>
   <div class="feed-filters" id="feed-filters">
     <div class="filter on" onclick="filterFeed('all',this)">All</div>
-    <div class="filter" onclick="filterFeed('traffic',this)">�️ Traffic</div>
-    <div class="filter" onclick="filterFeed('money',this)">🪙 Money</div>
-    <div class="filter" onclick="filterFeed('study',this)">🧠 Study</div>
-    <div class="filter" onclick="filterFeed('sleep',this)">🌙 Sleep</div>
-    <div class="filter" onclick="filterFeed('roast',this)">💥 Roasts</div>
+    <div class="filter" onclick="filterFeed('traffic',this)">🚦 Traffic</div>
+    <div class="filter" onclick="filterFeed('money',this)">💰 Money</div>
+    <div class="filter" onclick="filterFeed('study',this)">📚 Study</div>
+    <div class="filter" onclick="filterFeed('sleep',this)">😴 Sleep</div>
+    <div class="filter" onclick="filterFeed('roast',this)">🔥 Roasts</div>
   </div>
   <div class="feed-list" id="feed-list">
     <div class="feed-card" data-type="traffic" style="border-color:rgba(94,255,197,.2);background:linear-gradient(135deg,rgba(94,255,197,.03),var(--s2));">
-      <div class="fc-top"><div class="fc-badge">🛰️ Traffic · 9:12 AM</div><div class="fc-share" onclick="shareNudge(this)">Navigate</div></div>
+      <div class="fc-top"><div class="fc-badge">🚦 Traffic · 9:12 AM</div><div class="fc-share" onclick="shareNudge(this)">Navigate</div></div>
       <div class="fc-txt">"Traffic is heavy on your usual route right now. Take Oak Ave instead — you'll save 14 minutes and make it to your 10 AM meeting on time."</div>
       <div class="fc-footer"><div class="fc-tag">Location</div><div class="fc-tag">Calendar</div><div class="fc-tag" style="color:var(--a3);">✓ Left on time</div></div>
     </div>
     <div class="feed-card" data-type="roast">
-      <div class="fc-top"><div class="fc-badge">🛸 Savage · 2:14 PM</div><div class="fc-share" onclick="shareNudge(this)">Share</div></div>
+      <div class="fc-top"><div class="fc-badge">🔥 Savage · 2:14 PM</div><div class="fc-share" onclick="shareNudge(this)">Share</div></div>
       <div class="fc-txt">"Bro you checked DoorDash 3 times in an hour and didn't order anything. Just commit or close the app. 💀"</div>
       <div class="fc-footer"><div class="fc-tag">Spending</div><div class="fc-tag">Screen</div><button class="fc-tiktok" onclick="showToast('Shareable card ready! 🎵')">↗ TikTok</button></div>
     </div>
     <div class="feed-card" data-type="money" style="border-color:rgba(255,107,157,.15);">
-      <div class="fc-top"><div class="fc-badge">🌐 Geo Alert · 1:45 PM</div></div>
+      <div class="fc-top"><div class="fc-badge">📍 Geo Alert · 1:45 PM</div></div>
       <div class="fc-txt">"You're 0.2 miles from Westfield Mall. You have an active savings goal today — heads up 👀"</div>
       <div class="fc-footer"><div class="fc-tag">Location</div><div class="fc-tag">Spending</div></div>
     </div>
     <div class="feed-card" data-type="study">
-      <div class="fc-top"><div class="fc-badge">🧊 Chill · 11:30 AM</div></div>
+      <div class="fc-top"><div class="fc-badge">😌 Chill · 11:30 AM</div></div>
       <div class="fc-txt">"Hey, you've got 45 free minutes before your next thing. Maybe start that reading you've been putting off? No pressure."</div>
       <div class="fc-footer"><div class="fc-tag">Study</div><div class="fc-tag">Time</div></div>
     </div>
     <div class="feed-card" data-type="traffic" style="border-color:rgba(94,255,197,.15);">
-      <div class="fc-top"><div class="fc-badge">🛰️ Traffic · 8:05 AM</div></div>
+      <div class="fc-top"><div class="fc-badge">🚦 Traffic · 8:05 AM</div></div>
       <div class="fc-txt">"Your commute is clear this morning — 18 min vs the usual 28. Good day to leave on time and grab that coffee."</div>
       <div class="fc-footer"><div class="fc-tag">Location</div><div class="fc-tag" style="color:var(--a3);">🟢 Clear roads</div></div>
     </div>
     <div class="feed-card" data-type="study">
-      <div class="fc-top"><div class="fc-badge">⚡ Coach · 9:05 AM</div></div>
+      <div class="fc-top"><div class="fc-badge">💪 Coach · 9:05 AM</div></div>
       <div class="fc-txt">"You crushed 3 days in a row. Today is day 4. The version of you 6 months from now is built right now. Let's go."</div>
       <div class="fc-footer"><div class="fc-tag">Motivation</div><div class="fc-tag">Streak</div></div>
     </div>
     <div class="feed-card" data-type="sleep">
-      <div class="fc-top"><div class="fc-badge">🧊 Chill · 10:22 PM</div></div>
+      <div class="fc-top"><div class="fc-badge">😌 Chill · 10:22 PM</div></div>
       <div class="fc-txt">"It's past 10:30 and you said you wanted to sleep earlier this week. You're on a 4-day streak — keep it going?"</div>
       <div class="fc-footer"><div class="fc-tag">Sleep</div><div class="fc-tag">Streak</div></div>
     </div>
     <div class="feed-card" data-type="roast">
-      <div class="fc-top"><div class="fc-badge">� Savage · Yesterday</div><div class="fc-share" onclick="shareNudge(this)">Share</div></div>
+      <div class="fc-top"><div class="fc-badge">🔥 Savage · Yesterday</div><div class="fc-share" onclick="shareNudge(this)">Share</div></div>
       <div class="fc-txt">"You've been 'about to study' for 2 hours. The WiFi isn't the problem, bestie. 💅"</div>
       <div class="fc-footer"><div class="fc-tag">Study</div><button class="fc-tiktok" onclick="showToast('Shareable card ready! 🎵')">↗ TikTok</button></div>
     </div>
@@ -385,7 +383,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 <!-- TRAFFIC -->
 <div class="screen" id="s-traffic">
   <div class="statusbar"><span style="font-family:'Syne',sans-serif;font-weight:700;">9:41</span><div class="sig"><span style="height:5px"></span><span style="height:8px"></span><span style="height:11px"></span><span style="height:14px"></span></div></div>
-  <div class="hdr"><div class="hdr-title">On the <span class="grad-text">road</span> �️</div><div class="hdr-sub">2 upcoming events · Live traffic on</div></div>
+  <div class="hdr"><div class="hdr-title">On the <span class="grad-text">road</span> 📍</div><div class="hdr-sub">2 upcoming events · Live traffic on</div></div>
   <div class="traffic-screen-card">
     <div class="urgent-bar"><div class="urgent-dot"></div><div class="urgent-lbl">Leave in 8 min</div></div>
     <div style="font-size:14px;line-height:1.6;margin-bottom:12px;">Traffic is <span style="color:var(--a2);font-weight:700;">heavy on I-95</span>. You'll be late to <span style="font-weight:600;">Team Meeting</span> at 10:00 AM.</div>
@@ -400,11 +398,11 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   </div>
   <div class="smini" style="margin-top:14px;"><div class="smini-title">Later today</div></div>
   <div class="event-card">
-    <div><div class="ec-name">Dentist Appointment</div><div class="ec-loc">🛰️ 456 Park Ave · est. 18 min</div></div>
+    <div><div class="ec-name">Dentist Appointment</div><div class="ec-loc">📍 456 Park Ave · est. 18 min</div></div>
     <div class="ec-status"><div class="ec-ok">🟢 On track</div><div class="ec-time">Leave by 2:10 PM</div></div>
   </div>
   <div class="event-card" style="margin-top:0;">
-    <div><div class="ec-name">Gym Session</div><div class="ec-loc">🛰️ FitLife Center · est. 9 min</div></div>
+    <div><div class="ec-name">Gym Session</div><div class="ec-loc">📍 FitLife Center · est. 9 min</div></div>
     <div class="ec-status"><div class="ec-ok" style="color:var(--a4);">🟡 Monitor</div><div class="ec-time">Leave by 5:45 PM</div></div>
   </div>
   <div class="geo-alert">
@@ -419,34 +417,34 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   </div>
   <div class="smini"><div class="smini-title">How your AI would say it</div></div>
   <div style="padding:0 16px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;">
-    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--tm);margin-bottom:5px;">🧊 Chill</div><div style="font-size:12px;line-height:1.55;">"Hey, traffic's looking rough on your usual route. Might wanna head out a bit early."</div></div>
-    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--tm);margin-bottom:5px;">⚡ Coach</div><div style="font-size:12px;line-height:1.55;">"Traffic alert. Successful people aren't late. Leave NOW, take Oak Ave. Let's go."</div></div>
-    <div style="background:rgba(255,107,157,.05);border:1px solid rgba(255,107,157,.2);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--a2);margin-bottom:5px;">🛸 Savage</div><div style="font-size:12px;line-height:1.55;">"The highway is cooked. You're still sitting there. Love that for you. 🛸🔴"</div></div>
+    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--tm);margin-bottom:5px;">😌 Chill</div><div style="font-size:12px;line-height:1.55;">"Hey, traffic's looking rough on your usual route. Might wanna head out a bit early."</div></div>
+    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--tm);margin-bottom:5px;">💪 Coach</div><div style="font-size:12px;line-height:1.55;">"Traffic alert. Successful people aren't late. Leave NOW, take Oak Ave. Let's go."</div></div>
+    <div style="background:rgba(255,107,157,.05);border:1px solid rgba(255,107,157,.2);border-radius:var(--r);padding:12px;"><div style="font-size:10px;color:var(--a2);margin-bottom:5px;">🔥 Savage</div><div style="font-size:12px;line-height:1.55;">"The highway is cooked. You're still sitting there. Love that for you. 🚗🔴"</div></div>
   </div>
 </div>
 
 <!-- GOALS -->
 <div class="screen" id="s-goals">
   <div class="statusbar"><span style="font-family:'Syne',sans-serif;font-weight:700;">9:41</span><div class="sig"><span style="height:5px"></span><span style="height:8px"></span><span style="height:11px"></span><span style="height:14px"></span></div></div>
-  <div class="hdr"><div class="hdr-title">Goals & <span class="grad-text">Habits</span></div><div class="hdr-sub">4 active goals · 4-day streak 🌌</div></div>
+  <div class="hdr"><div class="hdr-title">Goals & <span class="grad-text">Habits</span></div><div class="hdr-sub">4 active goals · 4-day streak 🔥</div></div>
   <div style="padding:10px 0 0;">
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🪙</div><div><div class="goal-name">Save $200 this month</div><div class="goal-sub">$142 saved · 18 days left</div></div></div>
+      <div class="goal-hdr"><div class="goal-icon">💰</div><div><div class="goal-name">Save $200 this month</div><div class="goal-sub">$142 saved · 18 days left</div></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a1),var(--a3));width:71%;"></div></div>
       <div class="goal-meta"><span>71% complete</span><span>$58 to go</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🧠</div><div><div class="goal-name">Study 2h/day</div><div class="goal-sub">1h 22m today</div></div></div>
+      <div class="goal-hdr"><div class="goal-icon">📚</div><div><div class="goal-name">Study 2h/day</div><div class="goal-sub">1h 22m today</div></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a4),var(--a2));width:68%;"></div></div>
       <div class="goal-meta"><span>68% today</span><span>38 min left</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🌙</div><div><div class="goal-name">Sleep by 10:30 PM</div><div class="goal-sub">5 of 7 days this week</div></div></div>
+      <div class="goal-hdr"><div class="goal-icon">😴</div><div><div class="goal-name">Sleep by 10:30 PM</div><div class="goal-sub">5 of 7 days this week</div></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a3),var(--a1));width:71%;"></div></div>
-      <div class="goal-meta"><span>5 of 7 days</span><span>Good week 🧭</span></div>
+      <div class="goal-meta"><span>5 of 7 days</span><span>Good week 🎯</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">�️</div><div><div class="goal-name">Never be late</div><div class="goal-sub">On time 8 of last 10 events</div></div></div>
+      <div class="goal-hdr"><div class="goal-icon">🚗</div><div><div class="goal-name">Never be late</div><div class="goal-sub">On time 8 of last 10 events</div></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a3),var(--a4));width:80%;"></div></div>
       <div class="goal-meta"><span>80% on time</span><span>+2 from last week</span></div>
     </div>
@@ -464,9 +462,9 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div class="hdr"><div class="hdr-title">Your <span class="grad-text">Vibe</span></div><div class="hdr-sub">Customize your AI companion</div></div>
   <div class="smini"><div class="smini-title">AI Personality</div></div>
   <div class="persona-grid" id="persona-switch">
-    <div class="persona sel" data-p="chill" onclick="switchPersona(this)"><div class="persona-em">🧊</div><div class="persona-nm">Chill</div><div class="persona-ds">Calm & friendly</div></div>
-    <div class="persona" data-p="coach" onclick="switchPersona(this)"><div class="persona-em">⚡</div><div class="persona-nm">Coach</div><div class="persona-ds">Motivational</div></div>
-    <div class="persona" data-p="savage" onclick="switchPersona(this)"><div class="persona-em">🛸</div><div class="persona-nm">Savage</div><div class="persona-ds">Tough love</div></div>
+    <div class="persona sel" data-p="chill" onclick="switchPersona(this)"><div class="persona-em">😌</div><div class="persona-nm">Chill</div><div class="persona-ds">Calm & friendly</div></div>
+    <div class="persona" data-p="coach" onclick="switchPersona(this)"><div class="persona-em">💪</div><div class="persona-nm">Coach</div><div class="persona-ds">Motivational</div></div>
+    <div class="persona" data-p="savage" onclick="switchPersona(this)"><div class="persona-em">🔥</div><div class="persona-nm">Savage</div><div class="persona-ds">Tough love</div></div>
   </div>
   <div class="settings-grp">
     <div class="settings-lbl">Location & Traffic</div>
@@ -482,9 +480,9 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
     <div class="setting-row"><div class="sr-left"><div class="sr-title">Shareable Cards</div><div class="sr-sub">TikTok / Instagram export</div></div><div class="toggle" onclick="toggleSwitch(this)"></div></div>
   </div>
   <div class="pro-banner">
-    <div class="pro-title">Nudge Free ✦</div>
-    <div class="pro-sub">All features are free forever — no subscription, no trial, no paywall.</div>
-    <button class="pro-btn" onclick="showToast('All features unlocked! 🎉')">Free forever →</button>
+    <div class="pro-title">Nudge Pro ✦</div>
+    <div class="pro-sub">Unlock all personalities, Future You previews, bank sync, unlimited history & ad-free.</div>
+    <button class="pro-btn" onclick="showToast('7-day free trial started! 🎉')">Try Free · $4.99/mo →</button>
   </div>
   <div style="height:10px;"></div>
 </div>
@@ -493,24 +491,27 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 <div class="tabbar">
   <div class="tab on" onclick="goTab('home')"><div class="tab-icon-wrap"><div class="tab-icon">🏠</div></div><div class="tab-lbl">Home</div></div>
   <div class="tab" onclick="goTab('feed')"><div class="tab-icon-wrap"><div class="tab-icon">✦</div><div class="tab-badge">8</div></div><div class="tab-lbl">Nudges</div></div>
-  <div class="tab" onclick="goTab('traffic')"><div class="tab-icon-wrap"><div class="tab-icon">🛰️</div><div class="tab-badge" style="background:var(--a5);">!</div></div><div class="tab-lbl">Traffic</div></div>
-  <div class="tab" onclick="goTab('goals')"><div class="tab-icon-wrap"><div class="tab-icon">🧭</div></div><div class="tab-lbl">Goals</div></div>
-  <div class="tab" onclick="goTab('settings')"><div class="tab-icon-wrap"><div class="tab-icon">🧿</div></div><div class="tab-lbl">Settings</div></div>
+  <div class="tab" onclick="goTab('traffic')"><div class="tab-icon-wrap"><div class="tab-icon">📍</div><div class="tab-badge" style="background:var(--a5);">!</div></div><div class="tab-lbl">Traffic</div></div>
+  <div class="tab" onclick="goTab('goals')"><div class="tab-icon-wrap"><div class="tab-icon">🎯</div></div><div class="tab-lbl">Goals</div></div>
+  <div class="tab" onclick="goTab('settings')"><div class="tab-icon-wrap"><div class="tab-icon">⚙️</div></div><div class="tab-lbl">Settings</div></div>
+</div>
+
+</div><!-- /main-app -->
 <div class="toast" id="toast"></div>
 </div>
 </div>
 
 <script>
-const NUDGES={chill:["You've been scrolling for <em>42 minutes</em>. No judgment — but you did say you wanted to study today.","Hey, traffic's looking rough on your usual route. Might wanna head out a bit early.","You've got a <em>free 45 minutes</em> before your next thing. Maybe start that reading? No pressure.","It's getting late and you wanted to sleep by 10:30. Just a gentle heads up 🌙","You're near a coffee shop on a savings day. Totally your call though 🧊"],coach:["Traffic alert. <em>Successful people aren't late.</em> Leave NOW, take Oak Ave. Let's go.","Day 4 of your streak. <em>This is where people quit</em> — or push through. Which one are you?","You planned this study block. <em>Honor the commitment</em> you made to yourself. 30 minutes. Go.","That purchase goes against your savings goal. <em>Future you is watching this decision.</em>","Free hour detected. <em>Champions don't waste free hours.</em> What's your highest-leverage move right now?"],savage:["The highway is cooked. You're still sitting there. <em>Love that for you. 🛸🔴</em>","Bro you checked DoorDash 3 times in an hour and didn't order anything. <em>Just commit or close the app. 💀</em>","You've been 'about to study' for 2 hours. <em>The WiFi isn't the problem, bestie. 💅</em>","It's 11 PM. You said 10:30. <em>Your future self is not impressed.</em>","You opened the fridge 4 times in 20 minutes. <em>The food isn't changing. We need to talk.</em>"]};
+const NUDGES={chill:["You've been scrolling for <em>42 minutes</em>. No judgment — but you did say you wanted to study today.","Hey, traffic's looking rough on your usual route. Might wanna head out a bit early.","You've got a <em>free 45 minutes</em> before your next thing. Maybe start that reading? No pressure.","It's getting late and you wanted to sleep by 10:30. Just a gentle heads up 🌙","You're near a coffee shop on a savings day. Totally your call though 😌"],coach:["Traffic alert. <em>Successful people aren't late.</em> Leave NOW, take Oak Ave. Let's go.","Day 4 of your streak. <em>This is where people quit</em> — or push through. Which one are you?","You planned this study block. <em>Honor the commitment</em> you made to yourself. 30 minutes. Go.","That purchase goes against your savings goal. <em>Future you is watching this decision.</em>","Free hour detected. <em>Champions don't waste free hours.</em> What's your highest-leverage move right now?"],savage:["The highway is cooked. You're still sitting there. <em>Love that for you. 🚗🔴</em>","Bro you checked DoorDash 3 times in an hour and didn't order anything. <em>Just commit or close the app. 💀</em>","You've been 'about to study' for 2 hours. <em>The WiFi isn't the problem, bestie. 💅</em>","It's 11 PM. You said 10:30. <em>Your future self is not impressed.</em>","You opened the fridge 4 times in 20 minutes. <em>The food isn't changing. We need to talk.</em>"]};
 let currentPersona='chill',nudgeIndex=0;
 function obNext(s){document.getElementById('ob1').style.display='none';document.getElementById('ob2').style.display='none';document.getElementById('ob3').style.display='none';const e=document.getElementById('ob'+s);e.style.display='flex';e.style.flexDirection='column';e.style.flex='1';}
 function startApp(){document.getElementById('ob-screen').classList.remove('active');document.getElementById('ob-screen').style.display='none';document.getElementById('main-app').style.display='block';updateNudgeText();}
-function goTab(t){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('on'));document.getElementById('s-'+t).classList.add('active');const m={home:0,feed:1,traffic:2,goals:3,settings:4};const tabs=document.querySelectorAll('.tab');const activeTab=(m[t]!==undefined?tabs[m[t]]:null);if(activeTab){activeTab.classList.add('on');activeTab.classList.add('animate');activeTab.addEventListener('animationend',()=>activeTab.classList.remove('animate'),{once:true});} }
-function updateNudgeText(){const n=NUDGES[currentPersona];document.getElementById('nudge-text').innerHTML=n[nudgeIndex%n.length];const l={chill:'🧊 Chill',coach:'⚡ Coach',savage:'🛸 Savage'};document.getElementById('persona-label').textContent=l[currentPersona];}
+function goTab(t){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('on'));document.getElementById('s-'+t).classList.add('active');const m={home:0,feed:1,traffic:2,goals:3,settings:4};const tabs=document.querySelectorAll('.tab');if(m[t]!==undefined)tabs[m[t]].classList.add('on');}
+function updateNudgeText(){const n=NUDGES[currentPersona];document.getElementById('nudge-text').innerHTML=n[nudgeIndex%n.length];const l={chill:'😌 Chill',coach:'💪 Coach',savage:'🔥 Savage'};document.getElementById('persona-label').textContent=l[currentPersona];}
 function acceptNudge(){showToast("Let's go! 🚀");nudgeIndex++;setTimeout(updateNudgeText,400);}
 function dismissNudge(){nudgeIndex++;updateNudgeText();showToast('Nudge dismissed');}
 function dismissTraffic(){document.getElementById('traffic-nudge-card').style.display='none';showToast('Opening Maps... 🗺️');}
-function switchPersona(el){document.querySelectorAll('#persona-switch .persona').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');currentPersona=el.dataset.p;nudgeIndex=0;updateNudgeText();const n={chill:'Chill 🧊',coach:'Coach ⚡',savage:'Savage 🛸'};showToast('Personality: '+n[currentPersona]);document.querySelectorAll('#persona-sel .persona-sel-item').forEach(p=>{p.classList.toggle('sel',p.dataset.persona===currentPersona);});}
+function switchPersona(el){document.querySelectorAll('#persona-switch .persona').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');currentPersona=el.dataset.p;nudgeIndex=0;updateNudgeText();const n={chill:'Chill 😌',coach:'Coach 💪',savage:'Savage 🔥'};showToast('Personality: '+n[currentPersona]);document.querySelectorAll('#persona-sel .persona-sel-item').forEach(p=>{p.classList.toggle('sel',p.dataset.persona===currentPersona);});}
 function toggleSwitch(el){el.classList.toggle('off');}
 function filterFeed(type,el){document.querySelectorAll('#feed-filters .filter').forEach(f=>f.classList.remove('on'));el.classList.add('on');document.querySelectorAll('#feed-list .feed-card').forEach(card=>{card.style.display=(type==='all'||card.dataset.type===type)?'block':'none';});}
 function shareNudge(){showToast('Nudge card copied! 📋');}
