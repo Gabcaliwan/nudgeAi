@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nudge AI — Full Product Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c27;
+    --border: rgba(255,255,255,0.07);
+    --text: #f0f0f8;
+    --muted: rgba(240,240,248,0.45);
+    --accent1: #7c6bff;
+    --accent2: #ff6b9d;
+    --accent3: #6bffc8;
+    --accent4: #ffb86b;
+    --glow1: rgba(124,107,255,0.18);
+    --glow2: rgba(255,107,157,0.15);
+    --radius: 20px;
+    --phone-w: 340px;
+    --phone-h: 680px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    padding: 80px 32px;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(124,107,255,0.22) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(255,107,157,0.12) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--surface2); border:1px solid var(--border);
+    border-radius:100px; padding:6px 16px; font-size:12px;
+    color: var(--accent3); font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-tag span { width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero h1 {
+    font-size: clamp(52px,8vw,96px); font-weight:800; line-height:0.96;
+    letter-spacing:-0.03em; margin-bottom:24px;
+  }
+  .hero h1 .line1 { display:block; color:var(--text); }
+  .hero h1 .line2 { display:block;
+    background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .hero-sub { font-size:18px; color:var(--muted); max-width:540px; margin: 0 auto 44px; font-weight:300; }
+
+  .pill-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:64px; }
+  .pill {
+    border:1px solid var(--border); border-radius:100px;
+    padding:8px 18px; font-size:13px; color:var(--muted);
+    background:var(--surface);
+  }
+
+  /* ── SECTION ── */
+  .section { padding: 100px 0; }
+  .section-label {
+    font-size:11px; text-transform:uppercase; letter-spacing:0.12em;
+    color:var(--accent1); font-weight:600; margin-bottom:14px;
+    font-family:'Syne',sans-serif;
+  }
+  .section-title {
+    font-size: clamp(32px,4vw,52px); font-weight:800; line-height:1.05;
+    letter-spacing:-0.02em; margin-bottom:18px;
+  }
+  .section-sub { color:var(--muted); max-width:540px; font-size:16px; font-weight:300; }
+
+  .divider { height:1px; background:var(--border); margin:0; }
+
+  /* ── PHONE MOCK ── */
+  .phone-mock {
+    width: var(--phone-w);
+    height: var(--phone-h);
+    background: var(--surface);
+    border-radius: 44px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+    flex-shrink:0;
+  }
+  .phone-notch {
+    width:120px; height:32px; background:var(--bg);
+    border-radius:0 0 20px 20px; margin:0 auto;
+    position:relative; z-index:10;
+    display:flex; align-items:center; justify-content:center;
+    gap:6px;
+  }
+  .phone-notch .cam { width:10px;height:10px;border-radius:50%;background:#1a1a24; }
+  .phone-notch .mic { width:40px;height:4px;border-radius:4px;background:#1a1a24; }
+  .phone-screen {
+    width:100%; height:calc(100% - 32px);
+    overflow:hidden; position:relative;
+  }
+  /* Tab bar */
+  .tab-bar {
+    position:absolute; bottom:0; left:0; right:0;
+    height:72px;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter:blur(20px);
+    border-top:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-around;
+    padding:0 8px 8px;
+    z-index:100;
+  }
+  .tab-item {
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    flex:1; cursor:pointer; padding:8px 0;
+    border-radius:14px; transition:background 0.2s;
+  }
+  .tab-item.active .tab-icon { color:var(--accent1); }
+  .tab-item.active .tab-label { color:var(--text); }
+  .tab-icon { font-size:20px; line-height:1; }
+  .tab-label { font-size:10px; color:var(--muted); font-weight:500; }
+
+  /* ── SCREEN: HOME ── */
+  .screen { position:absolute; inset:0; padding:0 0 72px; overflow-y:auto; display:none; }
+  .screen.active { display:block; }
+  .screen::-webkit-scrollbar { display:none; }
+
+  .screen-header { padding:16px 20px 8px; }
+  .status-bar {
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:11px; color:var(--muted); font-weight:500; margin-bottom:16px;
+  }
+  .greeting { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; }
+  .greeting span { 
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .sub-greeting { font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* Nudge card */
+  .nudge-card-main {
+    margin:16px 16px 0;
+    background: linear-gradient(135deg, #1e1b3a 0%, #2a1a2e 100%);
+    border:1px solid rgba(124,107,255,0.25);
+    border-radius:24px; padding:20px;
+    position:relative; overflow:hidden;
+  }
+  .nudge-card-main::before {
+    content:'';position:absolute;top:-40px;right:-40px;
+    width:120px;height:120px;
+    background:radial-gradient(circle,rgba(124,107,255,0.3),transparent 70%);
+    pointer-events:none;
+  }
+  .nudge-badge {
+    display:inline-flex;align-items:center;gap:5px;
+    background:rgba(124,107,255,0.2);border-radius:100px;
+    padding:3px 10px; font-size:10px; color:var(--accent1);
+    font-weight:600; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:10px;
+  }
+  .nudge-badge::before { content:'✦'; font-size:8px; }
+  .nudge-text { font-size:14px; font-weight:400; line-height:1.5; margin-bottom:16px; }
+  .nudge-text em { font-style:normal; color:var(--accent3); font-weight:500; }
+  .nudge-actions { display:flex; gap:8px; }
+  .btn-sm {
+    flex:1; padding:9px 0; border-radius:14px; border:none; cursor:pointer;
+    font-size:12px; font-weight:600; font-family:'DM Sans',sans-serif;
+    transition:opacity 0.2s;
+  }
+  .btn-primary { background:var(--accent1); color:#fff; }
+  .btn-ghost { background:rgba(255,255,255,0.07); color:var(--muted); border:1px solid var(--border); }
+
+  /* Quick stats row */
+  .stats-row { display:flex; gap:10px; margin:12px 16px 0; }
+  .stat-card {
+    flex:1; background:var(--surface2); border-radius:18px;
+    border:1px solid var(--border); padding:14px 12px;
+  }
+  .stat-icon { font-size:18px; margin-bottom:6px; }
+  .stat-val { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; }
+  .stat-label { font-size:10px; color:var(--muted); margin-top:2px; }
+
+  /* Habit row */
+  .section-mini { padding:16px 16px 0; }
+  .section-mini-title {
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--muted); font-weight:600; margin-bottom:10px;
+  }
+  .habit-row { display:flex; gap:8px; }
+  .habit-chip {
+    display:flex;align-items:center;gap:6px;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:100px;padding:7px 12px;font-size:11px;
+  }
+  .habit-dot { width:6px;height:6px;border-radius:50%; }
+
+  /* Recent nudges */
+  .nudge-item {
+    display:flex;align-items:flex-start;gap:10px;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:16px;padding:12px 14px;margin-bottom:8px;
+  }
+  .nudge-emoji { font-size:20px;flex-shrink:0; }
+  .nudge-item-text { font-size:12px; line-height:1.5; }
+  .nudge-item-time { font-size:10px;color:var(--muted);margin-top:2px; }
+
+  /* ── SCREEN: FEED ── */
+  .feed-filter {
+    display:flex;gap:6px;padding:12px 16px;overflow-x:auto;
+  }
+  .feed-filter::-webkit-scrollbar{display:none;}
+  .filter-chip {
+    flex-shrink:0;padding:6px 14px;border-radius:100px;
+    font-size:11px;font-weight:500;cursor:pointer;
+    background:var(--surface2);border:1px solid var(--border);color:var(--muted);
+  }
+  .filter-chip.active { background:var(--accent1);color:#fff;border-color:transparent; }
+
+  .feed-card {
+    margin:0 16px 10px;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:20px;padding:16px;
+    position:relative;
+  }
+  .feed-card-top { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px; }
+  .feed-card-badge { font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px; }
+  .feed-card-action {
+    font-size:10px;font-weight:600;
+    padding:4px 10px;border-radius:100px;
+    background:rgba(124,107,255,0.15);color:var(--accent1);
+    border:1px solid rgba(124,107,255,0.2);
+    cursor:pointer;
+  }
+  .feed-card-text { font-size:13px;line-height:1.55; }
+  .feed-card-footer { display:flex;gap:6px;margin-top:12px;flex-wrap:wrap; }
+  .feed-tag {
+    font-size:10px;padding:3px 8px;border-radius:100px;
+    background:rgba(255,255,255,0.05);color:var(--muted);
+  }
+  .share-btn {
+    margin-left:auto;display:flex;align-items:center;gap:4px;
+    font-size:10px;color:var(--muted);cursor:pointer;
+    padding:3px 8px;border-radius:100px;
+    background:rgba(255,255,255,0.05);
+    border:none;font-family:'DM Sans',sans-serif;
+  }
+
+  /* ── SCREEN: GOALS ── */
+  .goal-card {
+    margin:0 16px 10px;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:20px;padding:16px;
+  }
+  .goal-header { display:flex;align-items:center;gap:10px;margin-bottom:14px; }
+  .goal-icon { font-size:22px; }
+  .goal-name { font-family:'Syne',sans-serif;font-size:15px;font-weight:700; }
+  .goal-sub { font-size:11px;color:var(--muted); }
+  .progress-bar-wrap { height:6px;background:rgba(255,255,255,0.06);border-radius:10px;margin-bottom:8px; }
+  .progress-bar-fill { height:100%;border-radius:10px; }
+  .goal-meta { display:flex;justify-content:space-between;font-size:11px;color:var(--muted); }
+
+  /* ── SCREEN: INSIGHTS ── */
+  .insight-chart-mock {
+    margin:12px 16px 0;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:20px;padding:16px;
+  }
+  .chart-title { font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px; }
+  .bar-chart { display:flex;align-items:flex-end;gap:6px;height:70px; }
+  .bar-item { flex:1;display:flex;flex-direction:column;align-items:center;gap:4px; }
+  .bar-fill { width:100%;border-radius:6px 6px 0 0;min-height:4px; }
+  .bar-label { font-size:9px;color:var(--muted); }
+
+  .insight-card {
+    margin:10px 16px 0;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:20px;padding:16px;
+  }
+  .insight-ai {
+    display:flex;gap:10px;
+    background:linear-gradient(135deg,rgba(124,107,255,0.1),rgba(255,107,157,0.08));
+    border:1px solid rgba(124,107,255,0.2);
+    border-radius:16px;padding:14px;
+    margin:10px 16px 0;
+  }
+  .ai-avatar {
+    width:32px;height:32px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;flex-shrink:0;
+  }
+  .ai-msg { font-size:12px;line-height:1.55; }
+  .ai-name { font-size:10px;color:var(--accent1);font-weight:600;margin-bottom:3px; }
+
+  /* ── SCREEN: SETTINGS ── */
+  .personality-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 16px 0; }
+  .persona-card {
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;
+    transition:all 0.2s;
+  }
+  .persona-card.selected {
+    border-color:var(--accent1);
+    background:rgba(124,107,255,0.1);
+  }
+  .persona-emoji { font-size:24px;margin-bottom:6px; }
+  .persona-name { font-size:11px;font-weight:600;margin-bottom:3px; }
+  .persona-desc { font-size:9px;color:var(--muted);line-height:1.4; }
+  .settings-group { margin:16px 16px 0; }
+  .settings-row {
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 14px;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:14px;margin-bottom:6px;
+  }
+  .settings-row-label { font-size:13px; }
+  .settings-row-sub { font-size:11px;color:var(--muted); }
+  .toggle {
+    width:38px;height:22px;border-radius:11px;background:var(--accent1);
+    position:relative;cursor:pointer;flex-shrink:0;
+  }
+  .toggle::after {
+    content:'';position:absolute;right:3px;top:3px;
+    width:16px;height:16px;border-radius:50%;background:#fff;
+  }
+  .toggle.off { background:rgba(255,255,255,0.1); }
+  .toggle.off::after { right:auto;left:3px; }
+
+  /* ── ONBOARDING SCREEN ── */
+  .onboard-screen {
+    background: linear-gradient(160deg, #0f0f1a 0%, #1a0f2e 100%);
+    min-height:var(--phone-h);
+    padding:24px 20px;
+    display:flex;flex-direction:column;
+  }
+  .onboard-step {
+    font-size:10px;color:var(--muted);text-align:right;
+    font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  }
+  .onboard-title {
+    font-family:'Syne',sans-serif;font-size:24px;font-weight:800;
+    margin:auto 0 8px;line-height:1.1;
+  }
+  .onboard-title .hl {
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .onboard-sub { font-size:13px;color:var(--muted);margin-bottom:24px; }
+  .goal-select-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px; }
+  .goal-select-item {
+    background:var(--surface2);border:1.5px solid var(--border);
+    border-radius:16px;padding:14px 12px;cursor:pointer;
+    transition:all 0.2s;
+  }
+  .goal-select-item.sel { border-color:var(--accent1);background:rgba(124,107,255,0.12); }
+  .goal-select-icon { font-size:22px;margin-bottom:6px; }
+  .goal-select-name { font-size:12px;font-weight:600; }
+  .goal-select-desc { font-size:10px;color:var(--muted);margin-top:2px; }
+  .onboard-btn {
+    margin-top:auto;padding:14px;border-radius:18px;
+    background:linear-gradient(135deg,var(--accent1),#9b6bff);
+    border:none;color:#fff;font-size:14px;font-weight:700;
+    font-family:'Syne',sans-serif;cursor:pointer;width:100%;
+    letter-spacing:0.02em;
+  }
+  .progress-dots { display:flex;gap:6px;justify-content:center;margin-bottom:24px; }
+  .dot { width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.15); }
+  .dot.active { width:20px;background:var(--accent1);border-radius:3px; }
+
+  /* ── MAIN LAYOUT (desktop doc) ── */
+  .doc-section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc-section:last-child { border-bottom:none; }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .two-col-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+
+  .card {
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:20px; padding:24px;
+  }
+  .card-title { font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px; }
+  .card-body { font-size:14px;color:var(--muted);line-height:1.7; }
+
+  .feature-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:20px; padding:24px;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { border-color:var(--accent1); transform:translateY(-2px); }
+  .feature-icon { font-size:28px;margin-bottom:14px; }
+  .feature-title { font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:8px; }
+  .feature-desc { font-size:13px;color:var(--muted);line-height:1.65; }
+
+  .arch-box {
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:16px;padding:16px 20px;margin-bottom:8px;
+  }
+  .arch-box-title { font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:6px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .arch-tag {
+    font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+    padding:2px 7px;border-radius:100px;font-weight:600;
+  }
+  .arch-tag.ai { background:rgba(124,107,255,0.2);color:var(--accent1); }
+  .arch-tag.data { background:rgba(107,255,200,0.15);color:var(--accent3); }
+  .arch-tag.ui { background:rgba(255,184,107,0.15);color:var(--accent4); }
+  .arch-box p { font-size:12px;color:var(--muted);line-height:1.6; }
+  .arch-arrow { text-align:center;font-size:18px;color:var(--muted);margin:4px 0; }
+
+  .mvp-phase {
+    border-left:2px solid var(--accent1);padding-left:20px;margin-bottom:24px;
+  }
+  .mvp-phase-label { font-size:11px;font-weight:600;color:var(--accent1);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px; }
+  .mvp-phase-title { font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px; }
+  .mvp-list { list-style:none; }
+  .mvp-list li { display:flex;gap:10px;font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.5; }
+  .mvp-list li::before { content:'→';color:var(--accent1);flex-shrink:0;font-weight:600; }
+
+  .mono-table { 
+    width:100%;border-collapse:collapse;font-size:13px;
+  }
+  .mono-table th {
+    text-align:left;padding:10px 16px;
+    background:var(--surface2);border:1px solid var(--border);
+    font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+    color:var(--muted);letter-spacing:0.04em;
+  }
+  .mono-table td {
+    padding:12px 16px;border:1px solid var(--border);
+    vertical-align:top;line-height:1.55;color:var(--muted);
+  }
+  .mono-table tr:nth-child(even) td { background:rgba(255,255,255,0.015); }
+  .free-tag { color:var(--accent3);font-weight:600; }
+  .pro-tag { color:var(--accent2);font-weight:600; }
+
+  .viral-card {
+    background: linear-gradient(135deg, #1a0f2e, #2e0f1a);
+    border:1px solid rgba(255,107,157,0.25);
+    border-radius:20px;padding:24px;
+    position:relative;overflow:hidden;
+  }
+  .viral-card::before {
+    content:'';position:absolute;top:-30px;right:-30px;
+    width:100px;height:100px;
+    background:radial-gradient(circle,rgba(255,107,157,0.25),transparent 70%);
+  }
+  .viral-card .card-title { color:var(--accent2); }
+
+  /* ── NAV ── */
+  .top-nav {
+    position:sticky;top:0;z-index:200;
+    background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:0 32px;height:60px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo { font-family:'Syne',sans-serif;font-size:18px;font-weight:800; }
+  .nav-logo span {
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .nav-links { display:flex;gap:6px; }
+  .nav-link {
+    font-size:13px;padding:6px 14px;border-radius:100px;
+    color:var(--muted);cursor:pointer;text-decoration:none;
+    transition:all 0.2s;
+  }
+  .nav-link:hover { color:var(--text);background:var(--surface2); }
+
+  /* Phone showcase */
+  .phone-showcase {
+    display:flex; gap:32px; justify-content:center; align-items:flex-start;
+    flex-wrap:wrap; padding:60px 0;
+  }
+  .phone-showcase-item { display:flex;flex-direction:column;align-items:center;gap:16px; }
+  .phone-showcase-label { font-size:12px;color:var(--muted);text-align:center;font-weight:500; }
+  .phone-showcase-label strong { display:block;color:var(--text);font-family:'Syne',sans-serif;font-weight:700; }
+
+  /* Chip + accent markers */
+  .inline-chip {
+    display:inline-block;padding:2px 8px;border-radius:100px;
+    font-size:11px;font-weight:600;
+  }
+  .chip-purple { background:rgba(124,107,255,0.15);color:var(--accent1); }
+  .chip-pink { background:rgba(255,107,157,0.12);color:var(--accent2); }
+  .chip-green { background:rgba(107,255,200,0.12);color:var(--accent3); }
+  .chip-orange { background:rgba(255,184,107,0.12);color:var(--accent4); }
+
+  /* NUDGE QUOTE BLOCK */
+  .nudge-quote {
+    background:linear-gradient(135deg,rgba(124,107,255,0.08),rgba(255,107,157,0.05));
+    border:1px solid rgba(124,107,255,0.2);
+    border-radius:20px;padding:20px 24px;margin:20px 0;
+    font-style:italic;font-size:15px;line-height:1.7;color:var(--muted);
+  }
+  .nudge-quote strong { font-style:normal;color:var(--text);font-weight:500; }
+
+  /* Floating UI demo label */
+  .screen-label {
+    position:absolute;top:-36px;left:50%;transform:translateX(-50%);
+    white-space:nowrap;font-size:11px;font-weight:600;color:var(--muted);
+    background:var(--surface2);border:1px solid var(--border);
+    padding:4px 12px;border-radius:100px;
+  }
+
+  /* Animation */
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .float { animation:float 4s ease-in-out infinite; }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns:1fr; gap:32px; }
+    .two-col-3 { grid-template-columns:1fr 1fr; }
+    .phone-showcase { gap:20px; }
+    .phone-mock { --phone-w:290px; --phone-h:580px; }
+  }
+  @media (max-width: 600px) {
+    .page { padding:0 16px; }
+    .two-col-3 { grid-template-columns:1fr; }
+    .top-nav { padding:0 16px; }
+    .nav-links { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-logo"><span>Nudge</span> AI</div>
+  <div class="nav-links">
+    <a class="nav-link" href="#screens">Screens</a>
+    <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="#location">📍 Traffic</a>
+    <a class="nav-link" href="#architecture">Architecture</a>
+    <a class="nav-link" href="#mvp">MVP</a>
+    <a class="nav-link" href="#monetization">Monetization</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag"><span></span>Full Product Concept · 2025</div>
+  <h1>
+    <span class="line1">Your smartest</span>
+    <span class="line2">daily companion.</span>
+  </h1>
+  <p class="hero-sub">A complete AI-powered mobile app that nudges you toward better decisions — without ever feeling like a productivity overlord.</p>
+  <div class="pill-row">
+    <div class="pill">🎯 Goal Tracking</div>
+    <div class="pill">🧠 AI Nudges</div>
+    <div class="pill">💸 Spending Awareness</div>
+    <div class="pill">⏱ Time Awareness</div>
+    <div class="pill">🔥 Viral Features</div>
+    <div class="pill">📊 Behavior Insights</div>
+    <div class="pill">📍 Live Location & Traffic</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SCREEN SHOWCASES -->
+<section class="doc-section page" id="screens">
+  <div class="section-label">UI Design</div>
+  <h2 class="section-title">All 6 app screens.</h2>
+  <p class="section-sub">Interactive mockups for every major screen. Click the tabs inside each phone to explore.</p>
+
+  <div class="phone-showcase">
+
+    <!-- PHONE 1: ONBOARDING -->
+    <div class="phone-showcase-item float" style="animation-delay:0s">
+      <div class="phone-mock" style="--phone-w:290px;--phone-h:580px;">
+        <div class="phone-notch"><div class="cam"></div><div class="mic"></div></div>
+        <div class="phone-screen">
+          <div class="onboard-screen">
+            <div class="onboard-step">Step 1 of 3</div>
+            <div style="margin-bottom:6px;margin-top:32px;">
+              <div style="font-size:36px;">👋</div>
+            </div>
+            <div class="onboard-title">What are your <span class="hl">goals?</span></div>
+            <div class="onboard-sub">Pick what matters to you. We'll tailor every nudge.</div>
+            <div class="goal-select-grid">
+              <div class="goal-select-item sel"><div class="goal-select-icon">💰</div><div class="goal-select-name">Save Money</div><div class="goal-select-desc">Track spending habits</div></div>
+              <div class="goal-select-item sel"><div class="goal-select-icon">📚</div><div class="goal-select-name">Study More</div><div class="goal-select-desc">Focus & deep work</div></div>
+              <div class="goal-select-item"><div class="goal-select-icon">🏃</div><div class="goal-select-name">Get Fit</div><div class="goal-select-desc">Move consistently</div></div>
+              <div class="goal-select-item sel"><div class="goal-select-icon">😴</div><div class="goal-select-name">Sleep Better</div><div class="goal-select-desc">Wind down routine</div></div>
+            </div>
+            <div class="progress-dots">
+              <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <button class="onboard-btn">Continue →</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-showcase-label"><strong>Onboarding</strong>Goal & personality setup</div>
+    </div>
+
+    <!-- PHONE 2: HOME DASHBOARD (interactive) -->
+    <div class="phone-showcase-item float" style="animation-delay:0.3s">
+      <div class="phone-mock" style="--phone-w:290px;--phone-h:580px;position:relative;">
+        <div class="phone-notch"><div class="cam"></div><div class="mic"></div></div>
+        <div class="phone-screen" style="position:relative;">
+
+          <!-- HOME SCREEN -->
+          <div class="screen active" id="s-home" style="background:var(--bg);">
+            <div class="screen-header">
+              <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+              <div class="greeting">Hey, <span>Alex</span> 👋</div>
+              <div class="sub-greeting">Thursday · 3 nudges waiting</div>
+            </div>
+
+            <!-- TRAFFIC NUDGE CARD -->
+            <div class="nudge-card-main" style="background:linear-gradient(135deg,#1e2a1a 0%,#1a2410 100%);border-color:rgba(107,255,200,0.3);">
+              <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(107,255,200,0.2),transparent 70%);pointer-events:none;"></div>
+              <div class="nudge-badge" style="background:rgba(107,255,200,0.15);color:var(--accent3);">🚦 Traffic Alert</div>
+              <div class="nudge-text">Traffic is <em style="color:var(--accent2);">heavy on I-95</em> right now. Your meeting is at 10:00 AM — <em>leave in 8 minutes</em> or you'll be late.</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:10px;padding:8px 10px;font-size:10px;">
+                  <div style="color:var(--muted);margin-bottom:2px;">Normal route</div>
+                  <div style="font-weight:600;color:var(--accent2);">42 min 🔴</div>
+                </div>
+                <div style="flex:1;background:rgba(107,255,200,0.08);border:1px solid rgba(107,255,200,0.2);border-radius:10px;padding:8px 10px;font-size:10px;">
+                  <div style="color:var(--muted);margin-bottom:2px;">Alt route</div>
+                  <div style="font-weight:600;color:var(--accent3);">28 min 🟢</div>
+                </div>
+              </div>
+              <div class="nudge-actions">
+                <button class="btn-sm btn-primary" style="background:var(--accent3);color:#0a0a0f;">Navigate now</button>
+                <button class="btn-sm btn-ghost">Dismiss</button>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-icon">⏱</div><div class="stat-val" style="color:var(--accent4);">2h 14m</div><div class="stat-label">Screen today</div></div>
+              <div class="stat-card"><div class="stat-icon">💸</div><div class="stat-val" style="color:var(--accent3);">$18</div><div class="stat-label">Spent today</div></div>
+              <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-val" style="color:var(--accent2);">4</div><div class="stat-label">Day streak</div></div>
+            </div>
+
+            <!-- LIVE LOCATION WIDGET -->
+            <div class="section-mini" style="margin-top:14px;">
+              <div class="section-mini-title">📍 Live Location Context</div>
+              <div style="background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:12px 14px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--accent3);box-shadow:0 0 6px var(--accent3);animation:pulse 2s infinite;"></div>
+                    <div style="font-size:12px;font-weight:600;">Downtown · Moving</div>
+                  </div>
+                  <div style="font-size:10px;color:var(--muted);">Updated 30s ago</div>
+                </div>
+                <div style="display:flex;gap:6px;">
+                  <div style="flex:1;background:rgba(255,107,157,0.08);border:1px solid rgba(255,107,157,0.15);border-radius:10px;padding:7px;text-align:center;">
+                    <div style="font-size:16px;margin-bottom:2px;">🔴</div>
+                    <div style="font-size:10px;color:var(--muted);">Highway</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--accent2);">Heavy</div>
+                  </div>
+                  <div style="flex:1;background:rgba(255,184,107,0.08);border:1px solid rgba(255,184,107,0.15);border-radius:10px;padding:7px;text-align:center;">
+                    <div style="font-size:16px;margin-bottom:2px;">🟡</div>
+                    <div style="font-size:10px;color:var(--muted);">City roads</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--accent4);">Moderate</div>
+                  </div>
+                  <div style="flex:1;background:rgba(107,255,200,0.08);border:1px solid rgba(107,255,200,0.15);border-radius:10px;padding:7px;text-align:center;">
+                    <div style="font-size:16px;margin-bottom:2px;">🟢</div>
+                    <div style="font-size:10px;color:var(--muted);">Alt route</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--accent3);">Clear</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-mini" style="margin-top:10px;">
+              <div class="section-mini-title">Today's habits</div>
+              <div class="habit-row" style="flex-wrap:wrap;gap:6px;">
+                <div class="habit-chip"><div class="habit-dot" style="background:#6bffc8;"></div>Study ✓</div>
+                <div class="habit-chip"><div class="habit-dot" style="background:#ff6b9d;"></div>Gym ✗</div>
+                <div class="habit-chip"><div class="habit-dot" style="background:#ffb86b;"></div>Budget ✓</div>
+              </div>
+            </div>
+            <div class="section-mini" style="margin-top:10px;">
+              <div class="section-mini-title">Recent nudges</div>
+              <div class="nudge-item"><div class="nudge-emoji">☕</div><div><div class="nudge-item-text">"You planned to skip coffee shops this week..."</div><div class="nudge-item-time">8:42 AM · Saved</div></div></div>
+              <div class="nudge-item"><div class="nudge-emoji">😴</div><div><div class="nudge-item-text">"11 PM — you said you'd sleep by 10:30."</div><div class="nudge-item-time">Yesterday</div></div></div>
+            </div>
+          </div>
+
+          <!-- FEED SCREEN -->
+          <div class="screen" id="s-feed" style="background:var(--bg);">
+            <div class="screen-header">
+              <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+              <div class="greeting">Nudge <span>Feed</span></div>
+            </div>
+            <div class="feed-filter">
+              <div class="filter-chip active">All</div>
+              <div class="filter-chip">💰 Money</div>
+              <div class="filter-chip">📚 Study</div>
+              <div class="filter-chip">😴 Sleep</div>
+              <div class="filter-chip">🚦 Traffic</div>
+              <div class="filter-chip">🔥 Roasts</div>
+            </div>
+            <div style="padding:0 0 8px;">
+              <!-- Traffic nudge in feed -->
+              <div class="feed-card" style="border-color:rgba(107,255,200,0.2);background:linear-gradient(135deg,rgba(107,255,200,0.04),var(--surface2));">
+                <div class="feed-card-top">
+                  <div class="feed-card-badge">🚦 Traffic · 9:12 AM</div>
+                  <div class="feed-card-action">Navigate</div>
+                </div>
+                <div class="feed-card-text">"Traffic is heavy on your usual route. Leave now and take Oak Ave instead — saves you 14 minutes. Your meeting starts at 10."</div>
+                <div class="feed-card-footer">
+                  <div class="feed-tag">Location</div>
+                  <div class="feed-tag">Calendar</div>
+                  <div class="feed-tag" style="color:var(--accent3);">✓ Left on time</div>
+                </div>
+              </div>
+              <div class="feed-card">
+                <div class="feed-card-top">
+                  <div class="feed-card-badge">🔥 Savage · 2:14 PM</div>
+                  <div class="feed-card-action">Share</div>
+                </div>
+                <div class="feed-card-text">"Bro you checked DoorDash 3 times in an hour and didn't order anything. Just commit or close the app. 💀"</div>
+                <div class="feed-card-footer">
+                  <div class="feed-tag">Spending</div>
+                  <div class="feed-tag">Screen</div>
+                  <button class="share-btn">↗ TikTok</button>
+                </div>
+              </div>
+              <div class="feed-card">
+                <div class="feed-card-top">
+                  <div class="feed-card-badge">😌 Chill · 11:30 AM</div>
+                </div>
+                <div class="feed-card-text">"Hey, you've got 45 free minutes before your next thing. Maybe start that reading you've been putting off? No pressure."</div>
+                <div class="feed-card-footer">
+                  <div class="feed-tag">Study</div><div class="feed-tag">Time</div>
+                </div>
+              </div>
+              <div class="feed-card">
+                <div class="feed-card-top">
+                  <div class="feed-card-badge">💪 Coach · 9:05 AM</div>
+                </div>
+                <div class="feed-card-text">"You crushed 3 days in a row. Today is day 4. The version of you 6 months from now is built right now. Let's go."</div>
+                <div class="feed-card-footer">
+                  <div class="feed-tag">Motivation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GOALS SCREEN -->
+          <div class="screen" id="s-goals" style="background:var(--bg);">
+            <div class="screen-header">
+              <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+              <div class="greeting">Goals & <span>Habits</span></div>
+            </div>
+            <div style="padding:0 16px;margin-top:8px;">
+              <div class="goal-card">
+                <div class="goal-header"><div class="goal-icon">💰</div><div><div class="goal-name">Save $200 this month</div><div class="goal-sub">$142 saved · 18 days left</div></div></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" style="background:linear-gradient(90deg,var(--accent1),var(--accent3));width:71%;"></div></div>
+                <div class="goal-meta"><span>71% complete</span><span>$58 to go</span></div>
+              </div>
+              <div class="goal-card" style="margin-top:8px;">
+                <div class="goal-header"><div class="goal-icon">📚</div><div><div class="goal-name">Study 2h/day</div><div class="goal-sub">1h 22m today</div></div></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" style="background:linear-gradient(90deg,var(--accent4),var(--accent2));width:68%;"></div></div>
+                <div class="goal-meta"><span>68% today</span><span>38 min left</span></div>
+              </div>
+              <div class="goal-card" style="margin-top:8px;">
+                <div class="goal-header"><div class="goal-icon">😴</div><div><div class="goal-name">Sleep by 10:30 PM</div><div class="goal-sub">5/7 days this week</div></div></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" style="background:linear-gradient(90deg,var(--accent3),var(--accent1));width:71%;"></div></div>
+                <div class="goal-meta"><span>5 of 7 days</span><span>Good week 🎯</span></div>
+              </div>
+              <div style="margin-top:12px;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:16px;text-align:center;">
+                <div style="font-size:20px;margin-bottom:6px;">＋</div>
+                <div style="font-size:12px;color:var(--muted);">Add a new goal</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INSIGHTS SCREEN -->
+          <div class="screen" id="s-insights" style="background:var(--bg);">
+            <div class="screen-header">
+              <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+              <div class="greeting">Your <span>Insights</span></div>
+            </div>
+            <div class="insight-chart-mock">
+              <div class="chart-title">Screen time this week</div>
+              <div class="bar-chart">
+                <div class="bar-item"><div class="bar-fill" style="height:65%;background:var(--accent1);"></div><div class="bar-label">M</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:80%;background:var(--accent1);"></div><div class="bar-label">T</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:45%;background:var(--accent3);"></div><div class="bar-label">W</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:90%;background:var(--accent2);"></div><div class="bar-label">T</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:55%;background:var(--accent1);"></div><div class="bar-label">F</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:30%;background:var(--accent3);opacity:0.5;"></div><div class="bar-label">S</div></div>
+                <div class="bar-item"><div class="bar-fill" style="height:20%;background:var(--accent3);opacity:0.5;"></div><div class="bar-label">S</div></div>
+              </div>
+            </div>
+            <div class="insight-ai">
+              <div class="ai-avatar">🤖</div>
+              <div><div class="ai-name">Nudge AI · Weekly Read</div><div class="ai-msg">You saved $58 more than last week and studied 18% longer. Thursday spikes in screen time are your biggest pattern — want me to send extra nudges Thursday afternoons?</div></div>
+            </div>
+            <div class="insight-card">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Reality Check 🧾</div>
+              <div style="font-size:13px;line-height:1.6;color:var(--muted);">If you save <strong style="color:var(--text);">$18/day</strong> like this week, you'll hit your goal <strong style="color:var(--accent3);">6 days early.</strong> But if Thursday spending continues, you'll be <strong style="color:var(--accent2);">$34 short.</strong></div>
+            </div>
+          </div>
+
+          <!-- Tab Bar (shared) -->
+          <div class="tab-bar">
+            <div class="tab-item active" onclick="switchTab('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+            <div class="tab-item" onclick="switchTab('feed')"><div class="tab-icon">✦</div><div class="tab-label">Nudges</div></div>
+            <div class="tab-item" onclick="switchTab('goals')"><div class="tab-icon">🎯</div><div class="tab-label">Goals</div></div>
+            <div class="tab-item" onclick="switchTab('insights')"><div class="tab-icon">📊</div><div class="tab-label">Insights</div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="phone-showcase-label"><strong>Main App</strong>Tap the tabs to explore!</div>
+    </div>
+
+    <!-- PHONE 3: SETTINGS / PERSONALITY -->
+    <div class="phone-showcase-item float" style="animation-delay:0.6s">
+      <div class="phone-mock" style="--phone-w:290px;--phone-h:580px;">
+        <div class="phone-notch"><div class="cam"></div><div class="mic"></div></div>
+        <div class="phone-screen" style="background:var(--bg);overflow-y:auto;">
+          <div style="padding:16px 0 80px;">
+            <div class="screen-header">
+              <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+              <div class="greeting">Your <span>Vibe</span></div>
+              <div class="sub-greeting">Choose your AI personality</div>
+            </div>
+            <div class="personality-grid" id="persona-grid">
+              <div class="persona-card selected" onclick="selectPersona(this)">
+                <div class="persona-emoji">😌</div>
+                <div class="persona-name">Chill</div>
+                <div class="persona-desc">Calm, friendly, no pressure</div>
+              </div>
+              <div class="persona-card" onclick="selectPersona(this)">
+                <div class="persona-emoji">💪</div>
+                <div class="persona-name">Coach</div>
+                <div class="persona-desc">Motivational, goal-focused</div>
+              </div>
+              <div class="persona-card" onclick="selectPersona(this)">
+                <div class="persona-emoji">🔥</div>
+                <div class="persona-name">Savage</div>
+                <div class="persona-desc">Funny, harsh, viral energy</div>
+              </div>
+            </div>
+            <div class="settings-group">
+              <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:600;margin-bottom:8px;">Notifications</div>
+              <div class="settings-row"><div><div class="settings-row-label">Smart Nudges</div><div class="settings-row-sub">Context-aware timing</div></div><div class="toggle"></div></div>
+              <div class="settings-row"><div><div class="settings-row-label">Do Not Disturb</div><div class="settings-row-sub">10 PM – 8 AM</div></div><div class="toggle"></div></div>
+              <div class="settings-row"><div><div class="settings-row-label">Spending Alerts</div><div class="settings-row-sub">Manual entry mode</div></div><div class="toggle off"></div></div>
+            </div>
+            <div class="settings-group" style="margin-top:12px;">
+              <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:600;margin-bottom:8px;">Premium</div>
+              <div style="background:linear-gradient(135deg,rgba(124,107,255,0.15),rgba(255,107,157,0.1));border:1px solid rgba(124,107,255,0.25);border-radius:16px;padding:14px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;">Nudge Pro ✦</div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">Unlock all personalities, Future You, and unlimited nudge history</div>
+                <button style="background:linear-gradient(135deg,var(--accent1),var(--accent2));border:none;color:#fff;font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;font-family:'Syne',sans-serif;cursor:pointer;width:100%;">Try Free · $4.99/mo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-showcase-label"><strong>Settings</strong>Personality switcher</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="doc-section page" id="features">
+  <div class="section-label">Product Features</div>
+  <h2 class="section-title">Everything Nudge AI does.</h2>
+  <p class="section-sub">7 core features, designed to work together as one seamless experience.</p>
+
+  <div class="two-col-3" style="margin-top:48px;">
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">Smart Nudge System</div>
+      <div class="feature-desc">Real-time, context-aware suggestions triggered by time, inactivity, behavior patterns, and your own goals. Never commands — always suggestions.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title">Goal Tracking</div>
+      <div class="feature-desc">Simple progress bars and streak tracking for up to 5 goals. No complex setups — just set a goal and the AI tracks behavior toward it automatically.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Habit Awareness</div>
+      <div class="feature-desc">Light daily habit check-ins (done/not done). The AI notices patterns and nudges you when you're falling behind or about to break a streak.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱</div>
+      <div class="feature-title">Time Awareness</div>
+      <div class="feature-desc">Detects free time windows using calendar integration and screen behavior. Proactively suggests productive uses for idle blocks of 30 minutes or more.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💸</div>
+      <div class="feature-title">Spending Awareness</div>
+      <div class="feature-desc">Optional manual logging or lightweight bank API integration. AI cross-references purchases against your savings goals and nudges before or during impulse buys.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔮</div>
+      <div class="feature-title">Future You Preview</div>
+      <div class="feature-desc">"If you keep this up, in 30 days you'll have saved $240 extra." Consequence-of-action previews shown when the AI detects a potential off-track decision.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <div class="feature-title">Smart Notifications</div>
+      <div class="feature-desc">AI learns your "low resistance" windows (post-lunch, evenings) and sends nudges only then. Max 3 per day to avoid notification fatigue.</div>
+    </div>
+    <div class="feature-card" style="border-color:rgba(107,255,200,0.25);background:linear-gradient(135deg,rgba(107,255,200,0.04),var(--surface));">
+      <div class="feature-icon">📍</div>
+      <div class="feature-title">Live Location & Traffic</div>
+      <div class="feature-desc">Monitors real-time traffic on your saved routes and cross-references your calendar. Nudges you <em>before</em> you need to leave — "Traffic is heavy, leave in 8 min or you'll be late." Also detects nearby distractions (coffee shops, malls) when you're trying to save money.</div>
+    </div>
+    <div class="feature-card viral-card">
+      <div class="feature-icon">🔥</div>
+      <div class="feature-title" style="color:var(--accent2);">Soft Roast Mode</div>
+      <div class="feature-desc" style="color:rgba(240,240,248,0.5);">"You opened the fridge 4 times in 20 minutes. The food isn't going to change. Bestie." Shareable cards optimized for TikTok/Reels.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Weekly Reality Check</div>
+      <div class="feature-desc">Every Sunday: a shareable summary card with your week in numbers, your top nudge, and a 1-line AI assessment. Designed to be posted.</div>
+    </div>
+  </div>
+
+  <!-- PERSONALITIES -->
+  <div style="margin-top:64px;">
+    <div class="section-label">AI Personalities</div>
+    <h3 class="section-title" style="font-size:32px;">Three voices. One goal.</h3>
+    <div class="two-col-3" style="margin-top:32px;">
+      <div class="card" style="border-color:rgba(107,255,200,0.2);">
+        <div style="font-size:32px;margin-bottom:12px;">😌</div>
+        <div class="card-title">Chill</div>
+        <div class="nudge-quote" style="margin:12px 0 16px;font-size:13px;">"Hey, no pressure, but you've got like 40 free minutes. Maybe start that thing you've been putting off? Or don't, I'm just saying."</div>
+        <div class="card-body">Warm, low-pressure, conversational. Perfect for users who hate being bossed around. Default personality.</div>
+      </div>
+      <div class="card" style="border-color:rgba(124,107,255,0.3);">
+        <div style="font-size:32px;margin-bottom:12px;">💪</div>
+        <div class="card-title">Coach</div>
+        <div class="nudge-quote" style="margin:12px 0 16px;font-size:13px;">"You've been working toward this goal for 12 days. That's real. This moment — right now — is where people either quit or make it. Which one are you?"</div>
+        <div class="card-body">Motivational, high-energy, goal-obsessed. Best for users who want accountability and like being pushed.</div>
+      </div>
+      <div class="card viral-card">
+        <div style="font-size:32px;margin-bottom:12px;">🔥</div>
+        <div class="card-title" style="color:var(--accent2);">Savage</div>
+        <div class="nudge-quote" style="margin:12px 0 16px;font-size:13px;border-color:rgba(255,107,157,0.2);">"Bro you've checked your ex's Instagram 6 times today and not opened your notes app once. We need to talk."</div>
+        <div class="card-body">Funny, slightly harsh, highly shareable. Designed to go viral. Ideal for Gen Z who want entertainment with accountability.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LOCATION & TRAFFIC FEATURE DEEP DIVE -->
+<section class="doc-section page" id="location">
+  <div class="section-label">New Feature</div>
+  <h2 class="section-title">Location & Traffic Awareness.</h2>
+  <p class="section-sub">Nudge AI watches the road so you don't have to. Context-aware alerts that know where you're going before you even open a map.</p>
+
+  <div class="two-col" style="margin-top:52px;align-items:start;gap:60px;">
+
+    <!-- Phone mockup: Traffic screen -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;flex-shrink:0;">
+      <div class="phone-mock float" style="--phone-w:290px;--phone-h:560px;">
+        <div class="phone-notch"><div class="cam"></div><div class="mic"></div></div>
+        <div class="phone-screen" style="background:#0d1a12;overflow-y:auto;">
+          <div style="padding:14px 16px 80px;">
+            <div class="status-bar" style="margin-bottom:14px;"><span>9:41</span><span>●●●</span></div>
+
+            <!-- Header -->
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+              <div>
+                <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;">On the road <span style="background:linear-gradient(135deg,var(--accent3),var(--accent1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">today</span></div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px;">2 upcoming events · Live traffic on</div>
+              </div>
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--accent3);box-shadow:0 0 8px var(--accent3);animation:pulse 2s infinite;margin-top:6px;"></div>
+            </div>
+
+            <!-- URGENT CARD -->
+            <div style="background:linear-gradient(135deg,#2a1a0a,#1e140a);border:1.5px solid rgba(255,184,107,0.4);border-radius:20px;padding:16px;margin-bottom:10px;position:relative;overflow:hidden;">
+              <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:radial-gradient(circle,rgba(255,184,107,0.2),transparent 70%);"></div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                <div style="width:7px;height:7px;border-radius:50%;background:var(--accent4);animation:pulse 1s infinite;"></div>
+                <div style="font-size:10px;font-weight:700;color:var(--accent4);text-transform:uppercase;letter-spacing:0.08em;">Leave in 8 min</div>
+              </div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:12px;line-height:1.5;">Traffic is <span style="color:var(--accent2);font-weight:700;">heavy on I-95</span>. You'll be late to <span style="color:var(--text);">Team Meeting</span> at 10:00 AM.</div>
+              <!-- mini route comparison -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">
+                <div style="background:rgba(255,107,157,0.1);border:1px solid rgba(255,107,157,0.2);border-radius:10px;padding:8px;text-align:center;">
+                  <div style="font-size:9px;color:var(--muted);margin-bottom:2px;">I-95 (usual)</div>
+                  <div style="font-size:15px;font-weight:700;color:var(--accent2);">42 min</div>
+                  <div style="font-size:9px;color:var(--accent2);">🔴 Heavy</div>
+                </div>
+                <div style="background:rgba(107,255,200,0.08);border:1.5px solid rgba(107,255,200,0.3);border-radius:10px;padding:8px;text-align:center;">
+                  <div style="font-size:9px;color:var(--muted);margin-bottom:2px;">Oak Ave ✦</div>
+                  <div style="font-size:15px;font-weight:700;color:var(--accent3);">26 min</div>
+                  <div style="font-size:9px;color:var(--accent3);">🟢 Clear</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:7px;">
+                <button style="flex:1;padding:8px;border-radius:12px;background:var(--accent3);border:none;color:#0a0a0f;font-size:11px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;">Open Maps →</button>
+                <button style="padding:8px 12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;">Snooze</button>
+              </div>
+            </div>
+
+            <!-- Later event -->
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px;">
+              <div style="font-size:10px;color:var(--muted);margin-bottom:6px;">Later today · 2:30 PM</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">Dentist Appt.</div>
+                  <div style="font-size:11px;color:var(--muted);">📍 456 Park Ave · 18 min away</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:12px;font-weight:700;color:var(--accent3);">🟢 On track</div>
+                  <div style="font-size:10px;color:var(--muted);">Leave by 2:10</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Geofence alert -->
+            <div style="background:linear-gradient(135deg,rgba(255,107,157,0.06),rgba(255,107,157,0.02));border:1px solid rgba(255,107,157,0.2);border-radius:16px;padding:14px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em;">💸 Spending Zone Alert</div>
+              <div style="font-size:12px;line-height:1.55;color:var(--muted);">You're <span style="color:var(--text);">0.2 miles</span> from Westfield Mall. You have a <strong style="color:var(--text);">savings goal active</strong> today. Just a heads up 👀</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="phone-showcase-label"><strong>Traffic & Location</strong>Live route view</div>
+    </div>
+
+    <!-- Right side: feature explanation -->
+    <div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div class="arch-box" style="border-color:rgba(107,255,200,0.2);">
+          <div class="arch-box-title">🚦 Leave-Now Alerts</div>
+          <p>Nudge AI pulls your next calendar event's address, calculates current ETA using Google Maps Traffic API, and alerts you when it's time to leave — factoring in your personal "buffer time" preference (5, 10, or 15 min early). Updates every 5 minutes if you haven't left yet.</p>
+        </div>
+
+        <div class="arch-box" style="border-color:rgba(255,184,107,0.2);">
+          <div class="arch-box-title">🗺️ Alternate Route Suggestions</div>
+          <p>When traffic is detected, the AI doesn't just warn you — it immediately calculates the best alternative route and shows a side-by-side time comparison. One tap to open in Apple Maps or Google Maps.</p>
+        </div>
+
+        <div class="arch-box" style="border-color:rgba(255,107,157,0.2);">
+          <div class="arch-box-title">📍 Geofence Spending Alerts</div>
+          <p>User sets "spending zones" (malls, specific streets, restaurant areas). When GPS detects you're within ~0.3 miles of a zone and you have an active savings goal, a gentle nudge fires. Works passively in the background — no need to open the app.</p>
+        </div>
+
+        <div class="arch-box">
+          <div class="arch-box-title">🏠 Commute Learning</div>
+          <p>After 2 weeks of use, the AI learns your typical commute patterns (when you usually leave, which routes you take, how long they take). It builds a personal baseline and flags anomalies — "You usually leave at 8:30 but traffic is 2x worse on Fridays. Leave by 8:10 today."</p>
+        </div>
+
+        <div class="arch-box" style="border-color:rgba(107,255,200,0.15);">
+          <div class="arch-box-title">🔋 Battery & Privacy Notes</div>
+          <p>Background location uses <strong>significant-change mode</strong> (not continuous GPS) to preserve battery — only polls precise location when a calendar event is within 2 hours. Location data is processed on-device; only anonymized ETA calculations hit external APIs. Users can disable at any time.</p>
+        </div>
+
+        <div style="margin-top:8px;padding:16px 20px;background:linear-gradient(135deg,rgba(107,255,200,0.08),rgba(124,107,255,0.06));border:1px solid rgba(107,255,200,0.2);border-radius:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Personality examples for traffic nudges</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted);">
+            <strong style="color:var(--text);">😌 Chill:</strong> "Hey, traffic's looking rough on your usual route. Might wanna head out a bit early."<br>
+            <strong style="color:var(--text);">💪 Coach:</strong> "Traffic alert. Successful people aren't late. Leave NOW, take Oak Ave. Let's go."<br>
+            <strong style="color:var(--text);">🔥 Savage:</strong> "The highway is cooked. You're still sitting there. Love that for you. 🚗🔴"
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARCHITECTURE -->
+<section class="doc-section page" id="architecture">
+  <div class="section-label">Technical Design</div>
+  <h2 class="section-title">AI System Architecture.</h2>
+  <p class="section-sub">How the intelligence behind Nudge AI actually works — kept practical and buildable.</p>
+
+  <div class="two-col" style="margin-top:48px;gap:48px;">
+    <div>
+      <div style="margin-bottom:24px;">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Data Layer</div>
+        <div class="arch-box">
+          <div class="arch-box-title"><span class="arch-tag data">Input</span>User Behavior Signals</div>
+          <p>Screen time (iOS Screen Time / Android Digital Wellbeing API), calendar free/busy slots, manual habit check-ins, optional spending logs, app usage timestamps, time of day patterns, <strong>real-time GPS location, saved routes, Google Maps traffic data, geofence events (entering/leaving zones).</strong></p>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-box">
+          <div class="arch-box-title"><span class="arch-tag data">Processing</span>Local Context Engine</div>
+          <p>On-device lightweight ML (Core ML / TFLite) builds a behavioral profile: peak distraction windows, streak data, goal progress delta, spending velocity. Privacy-first — raw data stays on device.</p>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-box">
+          <div class="arch-box-title"><span class="arch-tag ai">AI</span>Nudge Generation Layer</div>
+          <p>Context payload sent to <strong>GPT-4o mini</strong> or <strong>Claude Haiku</strong> API with a system prompt that defines the selected personality, active goals, current behavioral state, and nudge trigger type. Output: a single, short nudge message.</p>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-box">
+          <div class="arch-box-title"><span class="arch-tag ui">Output</span>Nudge Delivery System</div>
+          <p>Smart notification scheduling via local push (no background server needed). Nudge delivered as push notification + stored in feed. Fatigue prevention: max 3 nudges/day, DND windows enforced.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Nudge Trigger Logic</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="arch-box">
+          <div class="arch-box-title">⏱ Time Trigger</div>
+          <p>Free calendar window ≥30 min detected → nudge with task suggestion based on highest-priority pending goal.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-box-title">📱 Inactivity / Scroll Trigger</div>
+          <p>Screen time on entertainment apps (TikTok, Instagram, YouTube) exceeds 30 min without break → nudge.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-box-title">💸 Spending Trigger</div>
+          <p>Purchase event logged that exceeds daily spend budget OR category conflict with active savings goal detected → pre-purchase nudge.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-box-title">🌙 Streak / Habit Trigger</div>
+          <p>Approaching end of day without completing a habit that has a 3+ day active streak → gentle reminder before midnight.</p>
+        </div>
+        <div class="arch-box">
+          <div class="arch-box-title">🔮 Future You Trigger</div>
+          <p>Behavior deviation from goal detected 3 days in a row → projection summary showing current trajectory vs goal outcome.</p>
+        </div>
+        <div class="arch-box" style="border-color:rgba(107,255,200,0.25);background:rgba(107,255,200,0.04);">
+          <div class="arch-box-title"><span class="arch-tag" style="background:rgba(107,255,200,0.15);color:var(--accent3);">NEW</span> 📍 Location & Traffic Trigger</div>
+          <p>Background location + Google Maps Traffic API monitors saved routes continuously. Cross-references next calendar event's location + current ETA. If ETA ≥ event start time minus buffer (user-defined, default 10 min) → urgent leave-now nudge with alternate route suggestion. Also triggers a spending nudge if user's GPS shows they've stopped near a shopping zone while on a savings goal day.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Tech Stack</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="inline-chip chip-purple">React Native (Expo)</span>
+          <span class="inline-chip chip-green">GPT-4o mini API</span>
+          <span class="inline-chip chip-green">Claude Haiku API</span>
+          <span class="inline-chip chip-orange">Core ML / TFLite</span>
+          <span class="inline-chip chip-purple">iOS Screen Time API</span>
+          <span class="inline-chip chip-pink">Plaid API (spending)</span>
+          <span class="inline-chip chip-orange">Firebase (auth + sync)</span>
+          <span class="inline-chip chip-purple">RevenueCat (IAP)</span>
+          <span class="inline-chip chip-green">Google Calendar API</span>
+          <span class="inline-chip chip-green">Google Maps Traffic API</span>
+          <span class="inline-chip chip-orange">Expo Location (background GPS)</span>
+          <span class="inline-chip chip-purple">Geofencing API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VIRAL FEATURES -->
+<section class="doc-section page">
+  <div class="section-label">Viral Strategy</div>
+  <h2 class="section-title">Built to spread.</h2>
+  <p class="section-sub">Three features designed specifically to generate organic social sharing.</p>
+  <div class="two-col-3" style="margin-top:40px;">
+    <div class="viral-card">
+      <div class="card-title" style="color:var(--accent2);">🔥 Soft Roast Mode</div>
+      <div class="card-body" style="color:rgba(240,240,248,0.55);margin-top:10px;line-height:1.7;">
+        Savage AI personality generates witty, relatable callouts about user behavior. Each roast is a shareable card with the Nudge AI watermark. Designed for TikTok and Instagram Stories.<br><br>
+        <strong style="color:var(--text);">Example:</strong> <em style="color:rgba(240,240,248,0.7);">"You've opened Uber Eats 5 times today and closed it without ordering. That's not indecision — that's a whole character arc."</em>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(107,255,200,0.2);">
+      <div class="card-title">📊 Shareable Nudges</div>
+      <div class="card-body" style="margin-top:10px;line-height:1.7;">
+        Every nudge in the feed has a "Share" button that generates a stylized card (9:16 format for Stories, 1:1 for feed). The card shows the nudge text, your streak, and a subtle Nudge AI logo.<br><br>
+        <strong style="color:var(--text);">Hook:</strong> People sharing their roasts with friends creates massive word-of-mouth install loops.
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(255,184,107,0.2);">
+      <div class="card-title">🧾 Weekly Reality Check</div>
+      <div class="card-body" style="margin-top:10px;line-height:1.7;">
+        Every Sunday, a full-screen summary card is generated: "You scrolled 14 hours, saved $60, and kept 4/7 habits." One-tap share to any platform.<br><br>
+        <strong style="color:var(--text);">Virality mechanic:</strong> The mild shame/pride combination makes these impossible not to share. Think Spotify Wrapped but weekly and brutally honest.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MONETIZATION -->
+<section class="doc-section page" id="monetization">
+  <div class="section-label">Business Model</div>
+  <h2 class="section-title">Free to start. Worth upgrading.</h2>
+  <p class="section-sub">A freemium model optimized for viral growth first, revenue second.</p>
+  <div style="margin-top:40px;overflow-x:auto;">
+    <table class="mono-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free Tier</th>
+          <th>Nudge Pro · $4.99/mo</th>
+          <th>Nudge Pro+ · $9.99/mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AI Nudges / day</td><td class="free-tag">3 nudges</td><td class="pro-tag">Unlimited</td><td class="pro-tag">Unlimited</td></tr>
+        <tr><td>AI Personalities</td><td class="free-tag">Chill only</td><td class="pro-tag">All 3</td><td class="pro-tag">All 3 + custom tone</td></tr>
+        <tr><td>Goals</td><td class="free-tag">2 goals</td><td class="pro-tag">Unlimited</td><td class="pro-tag">Unlimited</td></tr>
+        <tr><td>Nudge History</td><td class="free-tag">7 days</td><td class="pro-tag">Unlimited</td><td class="pro-tag">Unlimited</td></tr>
+        <tr><td>Future You Preview</td><td>—</td><td class="pro-tag">✓</td><td class="pro-tag">✓</td></tr>
+        <tr><td>Spending Awareness</td><td class="free-tag">Manual only</td><td class="pro-tag">Bank sync (Plaid)</td><td class="pro-tag">Bank sync + AI spending coach</td></tr>
+        <tr><td>Weekly Reality Check</td><td class="free-tag">Basic card</td><td class="pro-tag">Full analytics</td><td class="pro-tag">Full analytics</td></tr>
+        <tr><td>Soft Roast Mode</td><td>—</td><td class="pro-tag">✓</td><td class="pro-tag">✓</td></tr>
+        <tr><td>Shareable Cards</td><td class="free-tag">With watermark</td><td class="pro-tag">No watermark</td><td class="pro-tag">Custom branding</td></tr>
+        <tr><td>Calendar Integration</td><td>—</td><td class="pro-tag">✓</td><td class="pro-tag">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="two-col" style="margin-top:32px;gap:24px;">
+    <div class="card">
+      <div class="card-title">💡 Growth Strategy</div>
+      <div class="card-body" style="margin-top:8px;">The free tier is deliberately viral — shareable roast cards have the Nudge AI watermark, creating organic installs. Pro upgrade is triggered by the frustration of hitting the 3-nudge daily limit at exactly the right moment. 7-day free Pro trial on signup.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📈 Revenue Projections (Y1)</div>
+      <div class="card-body" style="margin-top:8px;">At 50K MAU with 8% Pro conversion: ~$20K MRR. Comparable apps (Finch, Reflectly, Streaks) hit $2–5M ARR within 18 months of viral launch. The roast-sharing mechanic is the key differentiator for acquisition cost.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MVP PLAN -->
+<section class="doc-section page" id="mvp">
+  <div class="section-label">Launch Plan</div>
+  <h2 class="section-title">What to build first.</h2>
+  <p class="section-sub">A realistic, phased MVP plan that ships something shareable in 6–8 weeks.</p>
+
+  <div class="two-col" style="margin-top:48px;align-items:start;">
+    <div>
+      <div class="mvp-phase">
+        <div class="mvp-phase-label">Phase 1 · Weeks 1–4</div>
+        <div class="mvp-phase-title">Core MVP — "Does It Feel Good?"</div>
+        <ul class="mvp-list">
+          <li>Onboarding (goal selection, personality choice)</li>
+          <li>Home dashboard with live nudge card</li>
+          <li>Nudge Feed (last 7 days, manual history)</li>
+          <li>3 AI personalities via GPT-4o mini prompt system</li>
+          <li>Manual habit check-in (3 habits max)</li>
+          <li>Smart push notification (1x/day, optimized timing)</li>
+          <li>Share nudge card (with watermark, PNG export)</li>
+          <li>Basic settings + personality switcher</li>
+        </ul>
+      </div>
+
+      <div class="mvp-phase" style="border-color:var(--accent2);">
+        <div class="mvp-phase-label" style="color:var(--accent2);">Phase 2 · Weeks 5–8</div>
+        <div class="mvp-phase-title">Growth Layer — "Make It Viral"</div>
+        <ul class="mvp-list">
+          <li>Goal tracking with progress bars</li>
+          <li>Streak system + streak-at-risk nudge</li>
+          <li>Insights screen (basic charts)</li>
+          <li>Soft Roast Mode + TikTok share card</li>
+          <li>Weekly Reality Check (Sunday auto-card)</li>
+          <li>Time awareness (calendar read access)</li>
+          <li><strong style="color:var(--accent3);">📍 Live location + traffic nudges (Google Maps API)</strong></li>
+          <li><strong style="color:var(--accent3);">Geofence spending alerts (near mall/café detection)</strong></li>
+          <li>Paywall + RevenueCat integration</li>
+          <li>App Store / Play Store submission</li>
+        </ul>
+      </div>
+
+      <div class="mvp-phase" style="border-color:var(--accent3);">
+        <div class="mvp-phase-label" style="color:var(--accent3);">Phase 3 · Month 3–4</div>
+        <div class="mvp-phase-title">Power Features — "Make It Sticky"</div>
+        <ul class="mvp-list">
+          <li>Plaid API spending integration</li>
+          <li>Future You preview engine</li>
+          <li>On-device behavior ML model</li>
+          <li>Screen time API integration (iOS/Android)</li>
+          <li>Unlimited goals + advanced insights</li>
+          <li>Widget (iOS home screen nudge widget)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title">👥 Target User</div>
+        <div class="card-body" style="margin-top:8px;">Ages 18–28. College students, early-career professionals. Already use Notion, Duolingo, or Finch. Frustrated by existing productivity apps feeling "too much." Extremely online — TikTok, Instagram. Care about money, time, and self-improvement but hate being lectured.</div>
+      </div>
+      <div class="card" style="margin-bottom:16px;border-color:rgba(124,107,255,0.25);">
+        <div class="card-title">⚙️ MVP Tech Choices</div>
+        <div class="card-body" style="margin-top:8px;line-height:1.8;">
+          <strong style="color:var(--text);">Framework:</strong> React Native + Expo (fastest cross-platform)<br>
+          <strong style="color:var(--text);">AI:</strong> GPT-4o mini (cheapest per nudge, ~$0.0001/call)<br>
+          <strong style="color:var(--text);">Backend:</strong> Firebase (auth, Firestore for nudge history)<br>
+          <strong style="color:var(--text);">Payments:</strong> RevenueCat (5 min setup, handles all IAP)<br>
+          <strong style="color:var(--text);">Push:</strong> Expo Notifications (free, reliable)<br>
+          <strong style="color:var(--text);">Analytics:</strong> PostHog (free tier, great for mobile funnels)
+        </div>
+      </div>
+      <div class="card" style="border-color:rgba(107,255,200,0.2);">
+        <div class="card-title">🚀 Launch Checklist</div>
+        <div class="card-body" style="margin-top:8px;line-height:1.8;">
+          ✅ Soft launch TestFlight (100 users, Week 4)<br>
+          ✅ Roast Mode content — seed 10 shareable cards<br>
+          ✅ TikTok account with "my AI roasted me" content<br>
+          ✅ ProductHunt launch (Day 1 App category)<br>
+          ✅ Reddit — r/productivity, r/selfimprovement posts<br>
+          ✅ App Store listing + preview video (30s, roast-heavy)<br>
+          ✅ Week 1 retention target: 40%+ (nudge = daily hook)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER SUMMARY -->
+<section style="padding:80px 0;text-align:center;" class="page">
+  <div class="section-label" style="justify-content:center;display:flex;">TL;DR</div>
+  <h2 class="section-title" style="max-width:640px;margin:0 auto 20px;">A smart companion app that actually ships.</h2>
+  <p class="section-sub" style="margin:0 auto 48px;">Nudge AI is a lean, AI-powered mobile app that earns daily opens through personality, earns shares through humor, and earns revenue through value. It's the productivity app for people who hate productivity apps.</p>
+  <div class="pill-row" style="justify-content:center;">
+    <div class="pill">React Native · 8 weeks to MVP</div>
+    <div class="pill">GPT-4o mini · $0.0001/nudge</div>
+    <div class="pill">3 personalities · 1 core loop</div>
+    <div class="pill">Viral by design</div>
+  </div>
+</section>
+
+<script>
+  // Tab switching
+  function switchTab(tab) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    document.getElementById('s-' + tab).classList.add('active');
+    const tabs = document.querySelectorAll('.tab-item');
+    const map = {home:0,feed:1,goals:2,insights:3};
+    if(map[tab] !== undefined) tabs[map[tab]].classList.add('active');
+  }
+
+  // Persona selection
+  function selectPersona(el) {
+    document.querySelectorAll('.persona-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  // Goal selection on onboarding
+  document.querySelectorAll('.goal-select-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('sel'));
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
