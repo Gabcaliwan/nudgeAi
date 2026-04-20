@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Nudge AI</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
@@ -14,7 +14,7 @@
   --a1:#7c6bff;--a2:#ff6b9d;--a3:#5effc5;--a4:#ffb84d;--a5:#ff8c42;
   --r:16px;--r2:20px;--r3:24px;
 }
-body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden;scroll-behavior:smooth;}
 .app{max-width:400px;margin:0 auto;min-height:100vh;position:relative;background:var(--bg);}
 .shell{width:100%;max-width:400px;margin:0 auto;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;}
 .screen{display:none;flex:1;flex-direction:column;overflow-y:auto;padding-bottom:80px;animation:fadeIn .5s ease-out;}
@@ -27,7 +27,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 .statusbar .sig{display:flex;gap:3px;align-items:flex-end;}
 .statusbar .sig span{width:3px;background:var(--tm);border-radius:1px;}
 .hdr{padding:20px 20px 12px;background:linear-gradient(180deg,rgba(124,107,255,.05),transparent);border-bottom:1px solid rgba(124,107,255,.1);}
-.hdr-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.5px;}
+.hdr-title{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.5px;}
 .hdr-sub{font-size:13px;color:rgba(242,242,250,0.6);margin-top:4px;}
 .grad-text{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .card{background:var(--s2);border:1px solid var(--b);border-radius:var(--r2);padding:16px;transition:all .3s ease;box-shadow:0 4px 16px rgba(0,0,0,0.2);}
@@ -125,10 +125,14 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 .goal-card:nth-child(2){animation-delay:.2s}
 .goal-card:nth-child(3){animation-delay:.3s}
 .goal-card:nth-child(4){animation-delay:.4s}
-.goal-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.goal-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
 .goal-icon{font-size:22px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--s3);border-radius:12px;}
 .goal-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
 .goal-sub{font-size:11px;color:var(--tm);margin-top:2px;}
+.goal-actions{display:flex;gap:8px;}
+.goal-action{width:36px;height:36px;border-radius:50%;border:none;background:var(--s3);color:var(--tm);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;font-size:16px;font-weight:600;}
+.goal-action:hover{background:rgba(124,107,255,.2);color:var(--a1);transform:scale(1.1);}
+.goal-action:active{transform:scale(0.95);}
 .prog-wrap{height:5px;background:rgba(255,255,255,0.06);border-radius:10px;margin-bottom:8px;}
 .prog-fill{height:100%;border-radius:10px;transition:width .6s ease;}
 .goal-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--tm);}
@@ -174,6 +178,16 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 .pro-sub{font-size:11px;color:var(--tm);margin-bottom:12px;}
 .pro-btn{width:100%;padding:12px;border-radius:14px;background:linear-gradient(135deg,var(--a1),#9b6bff);border:none;color:#fff;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:opacity .15s;}
 .pro-btn:active{opacity:.85;}
+.fab-container{position:absolute;right:16px;bottom:88px;z-index:1100;display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.fab{width:62px;height:62px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(124,107,255,.2);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;}
+.fab:hover{transform:scale(1.03);box-shadow:0 24px 44px rgba(124,107,255,.28);}
+.fab-menu{display:none;flex-direction:column;align-items:flex-end;gap:10px;margin-bottom:6px;}
+.fab-menu.active{display:flex;}
+.fab-item{min-width:160px;text-align:right;padding:12px 16px;border-radius:999px;background:rgba(18,18,28,.95);border:1px solid var(--b);color:var(--t);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+.fab-item:hover{background:rgba(124,107,255,.12);border-color:rgba(124,107,255,.2);}
+.fab-item span{font-size:16px;}
+.fab-workout{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,rgba(94,255,197,.12),rgba(94,255,197,.04));border:1px solid rgba(94,255,197,.2);color:var(--a3);font-weight:700;font-size:12px;backdrop-filter:blur(10px);}
+.fab-workout:before{content:'💪';font-size:16px;}
 .tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:72px;background:rgba(9,9,15,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-around;padding:0 8px 8px;z-index:1000;}
 .tab{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;cursor:pointer;padding:8px 4px;border-radius:14px;transition:background .15s, transform .15s;}
 .tab.animate{animation:tab-press .28s cubic-bezier(0.34,1.56,0.64,1);}
@@ -183,15 +197,33 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 @keyframes tab-press{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
 .tab-icon-wrap{position:relative;}
 .tab-badge{position:absolute;top:-4px;right:-6px;width:14px;height:14px;border-radius:50%;background:var(--a2);font-size:8px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;}
-.ai-box{margin:10px 16px 0;background:var(--s2);border:1px solid var(--b);border-radius:var(--r2);padding:14px;animation:slideInUp .6s ease-out;transition:all .3s ease;}
-.ai-box:hover{border-color:var(--a1);box-shadow:0 8px 24px rgba(124,107,255,.15);}
-.ai-box-loading{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tm);}
-.ai-box-loading .dots span{animation:blink 1.4s infinite;opacity:0;}
-.ai-box-loading .dots span:nth-child(2){animation-delay:.2s;}
-.ai-box-loading .dots span:nth-child(3){animation-delay:.4s;}
-@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
-.ai-response{font-size:13px;line-height:1.65;}
-.ai-response em{font-style:normal;color:var(--a3);}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:2000;align-items:center;justify-content:center;animation:fadeIn .3s ease-out;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--bg);border-radius:var(--r3);border:1px solid var(--b);max-width:90%;max-height:90vh;overflow-y:auto;animation:slideInUp .4s cubic-bezier(0.34,1.56,0.64,1);}
+.modal-header{padding:20px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;}
+.modal-close{background:none;border:none;color:var(--tm);font-size:20px;cursor:pointer;padding:0;transition:color .2s;}
+.modal-close:hover{color:var(--t);}
+.modal-body{padding:20px;display:flex;flex-direction:column;gap:12px;}
+.spending-option{background:var(--s2);border:1.5px solid var(--b);border-radius:var(--r2);padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .3s ease;}
+.spending-option:hover{border-color:var(--a1);background:rgba(124,107,255,.08);}
+.spending-option.spent{border-color:rgba(255,107,157,.4);background:rgba(255,107,157,.08);}
+.spending-option.spent:hover{border-color:var(--a2);background:rgba(255,107,157,.15);}
+.spending-option.saved{border-color:rgba(94,255,197,.4);background:rgba(94,255,197,.08);}
+.spending-option.saved:hover{border-color:var(--a3);background:rgba(94,255,197,.15);}
+.sopt-icon{font-size:24px;flex-shrink:0;}
+.sopt-content{flex:1;}
+.sopt-title{font-size:13px;font-weight:700;color:var(--t);}
+.sopt-sub{font-size:11px;color:var(--tm);margin-top:2px;}
+.sopt-amount{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-top:6px;padding:8px 0;}
+.sopt-amount input{background:var(--s3);border:1px solid var(--b);border-radius:10px;padding:8px 10px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:12px;width:100%;}
+.sopt-note{font-size:10px;color:var(--tm);margin-top:4px;}
+.situation-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,107,255,.12);border:1px solid rgba(124,107,255,.25);border-radius:100px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--a1);margin-bottom:8px;animation:slideInLeft .5s ease-out;}
+.situation-icon{font-size:14px;}
+.hdr-context{display:flex;align-items:center;gap:6px;margin-top:8px;padding:8px 0;border-top:1px solid rgba(124,107,255,.1);font-size:12px;color:var(--tm);}
+.hdr-context-item{display:flex;align-items:center;gap:4px;padding:0 8px;}
+.hdr-context-item:first-child{padding-left:0;}
+
 .ask-ai-btn{width:calc(100% - 32px);margin:10px 16px 0;padding:12px;background:linear-gradient(135deg,rgba(124,107,255,.15),rgba(255,107,157,.1));border:1px solid rgba(124,107,255,.25);border-radius:var(--r2);color:var(--a1);font-size:13px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s ease;}
 .ask-ai-btn:hover{background:linear-gradient(135deg,rgba(124,107,255,.25),rgba(255,107,157,.15));border-color:rgba(124,107,255,.4);box-shadow:0 8px 24px rgba(124,107,255,.2);}
 .ask-ai-btn:active{opacity:.8;transform:scale(.98);}
@@ -324,6 +356,11 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div class="hdr">
     <div class="hdr-title">Hey, <span class="grad-text">Alex</span> 👋</div>
     <div class="hdr-sub">Thursday · 3 nudges waiting</div>
+    <div class="hdr-context">
+      <div class="hdr-context-item">⏰ Morning Rush</div>
+      <div class="hdr-context-item">📊 71% to goal</div>
+      <div class="hdr-context-item">🔥 4-day streak</div>
+    </div>
   </div>
   <div class="traffic-card" id="traffic-nudge-card">
     <div class="traffic-badge"><div class="live-dot"></div>Traffic Alert · Live</div>
@@ -333,8 +370,8 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
       <div class="route-box good"><div class="route-lbl">Oak Ave ✦ Best</div><div class="route-time" style="color:var(--a3);">26 min</div><div class="route-status" style="color:var(--a3);">🟢 Clear</div></div>
     </div>
     <div class="nudge-actions" style="margin-top:12px;">
-      <button class="btn btn-green" onclick="dismissTraffic()">Navigate now</button>
-      <button class="btn btn-g" onclick="dismissTraffic()">Dismiss</button>
+      <button class="btn btn-green" onclick="openMaps()">Navigate now</button>
+      <button class="btn btn-g" onclick="snoozeTraffic()">Snooze 5m</button>
     </div>
   </div>
   <div class="nudge-hero" id="ai-nudge-hero">
@@ -346,9 +383,9 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
     </div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="stat-icon">⏱</div><div class="stat-val" style="color:var(--a4);">2h 14m</div><div class="stat-lbl">Screen today</div></div>
-    <div class="stat"><div class="stat-icon">💸</div><div class="stat-val" style="color:var(--a3);">$18</div><div class="stat-lbl">Spent today</div></div>
-    <div class="stat"><div class="stat-icon">🌌</div><div class="stat-val" style="color:var(--a2);">4</div><div class="stat-lbl">Day streak</div></div>
+    <div class="stat"><div class="stat-icon">⏱</div><div class="stat-val" id="stat-screen" style="color:var(--a4);">2h 14m</div><div class="stat-lbl">Screen today</div></div>
+    <div class="stat"><div class="stat-icon">💸</div><div class="stat-val" id="stat-spent" style="color:var(--a3);">$18</div><div class="stat-lbl">Spent today</div></div>
+    <div class="stat"><div class="stat-icon">💰</div><div class="stat-val" id="stat-saved" style="color:var(--a2);">$5</div><div class="stat-lbl">Saved today</div></div>
   </div>
   <div class="loc-widget">
     <div class="loc-header">
@@ -489,26 +526,26 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div class="hdr"><div class="hdr-title">Goals & <span class="grad-text">Habits</span></div><div class="hdr-sub">4 active goals · 4-day streak 🌌</div></div>
   <div style="padding:10px 0 0;">
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🪙</div><div><div class="goal-name">Save $200 this month</div><div class="goal-sub">$142 saved · 18 days left</div></div></div>
+      <div class="goal-hdr"><div style="display:flex;gap:10px;align-items:center;"><div class="goal-icon">🪙</div><div><div class="goal-name">Save $200 this month</div><div class="goal-sub">$142 saved · 18 days left</div></div></div><div class="goal-actions"><button class="goal-action" onclick="editGoal(this)">✎</button><button class="goal-action" onclick="deleteGoal(this)">🗑</button></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a1),var(--a3));width:71%;"></div></div>
       <div class="goal-meta"><span>71% complete</span><span>$58 to go</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🧠</div><div><div class="goal-name">Study 2h/day</div><div class="goal-sub">1h 22m today</div></div></div>
+      <div class="goal-hdr"><div style="display:flex;gap:10px;align-items:center;"><div class="goal-icon">🧠</div><div><div class="goal-name">Study 2h/day</div><div class="goal-sub">1h 22m today</div></div></div><div class="goal-actions"><button class="goal-action" onclick="editGoal(this)">✎</button><button class="goal-action" onclick="deleteGoal(this)">🗑</button></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a4),var(--a2));width:68%;"></div></div>
       <div class="goal-meta"><span>68% today</span><span>38 min left</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">🌙</div><div><div class="goal-name">Sleep by 10:30 PM</div><div class="goal-sub">5 of 7 days this week</div></div></div>
+      <div class="goal-hdr"><div style="display:flex;gap:10px;align-items:center;"><div class="goal-icon">🌙</div><div><div class="goal-name">Sleep by 10:30 PM</div><div class="goal-sub">5 of 7 days this week</div></div></div><div class="goal-actions"><button class="goal-action" onclick="editGoal(this)">✎</button><button class="goal-action" onclick="deleteGoal(this)">🗑</button></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a3),var(--a1));width:71%;"></div></div>
       <div class="goal-meta"><span>5 of 7 days</span><span>Good week 🧭</span></div>
     </div>
     <div class="goal-card">
-      <div class="goal-hdr"><div class="goal-icon">�️</div><div><div class="goal-name">Never be late</div><div class="goal-sub">On time 8 of last 10 events</div></div></div>
+      <div class="goal-hdr"><div style="display:flex;gap:10px;align-items:center;"><div class="goal-icon">⚡</div><div><div class="goal-name">Never be late</div><div class="goal-sub">On time 8 of last 10 events</div></div></div><div class="goal-actions"><button class="goal-action" onclick="editGoal(this)">✎</button><button class="goal-action" onclick="deleteGoal(this)">🗑</button></div></div>
       <div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a3),var(--a4));width:80%;"></div></div>
       <div class="goal-meta"><span>80% on time</span><span>+2 from last week</span></div>
     </div>
-    <div class="add-goal" onclick="showToast('Goal creator coming in v2! 🚀')">＋ Add a new goal</div>
+    <div class="add-goal" onclick="addGoal()">＋ Add a new goal</div>
   </div>
   <div class="smini" style="margin-top:14px;"><div class="smini-title">Weekly reality check 🧾</div></div>
   <div style="margin:0 16px 10px;background:linear-gradient(135deg,rgba(124,107,255,.08),rgba(255,107,157,.05));border:1px solid rgba(124,107,255,.2);border-radius:var(--r2);padding:16px;">
@@ -547,7 +584,176 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
   <div style="height:10px;"></div>
 </div>
 
-<!-- TAB BAR -->
+<!-- FLOATING ACTION BUTTON -->
+  <div class="fab-container">
+    <div class="fab-menu" id="fab-menu">
+      <button class="fab-item" onclick="openSpendingModal();toggleQuickMenu(false)"><span>💸</span> Spent</button>
+      <button class="fab-item" onclick="openSavingModal();toggleQuickMenu(false)"><span>💰</span> Saved</button>
+      <button class="fab-item" onclick="openAskAI();toggleQuickMenu(false)"><span>💬</span> Chat AI</button>
+      <button class="fab-item" onclick="openStatsModal();toggleQuickMenu(false)"><span>📊</span> Stats</button>
+    </div>
+    <div class="fab-workout" title="Workout logged today">Worked out today</div>
+    <button class="fab" id="fab-btn" onclick="toggleQuickMenu()">＋</button>
+</div>
+
+<!-- GOAL EDIT MODAL -->
+<div class="modal-overlay" id="goal-edit-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✎ Edit Goal</div>
+      <button class="modal-close" onclick="closeModal('goal-edit-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:16px;">
+        <label style="font-size:11px;color:var(--tm);text-transform:uppercase;font-weight:600;display:block;margin-bottom:6px;">Goal Title</label>
+        <input type="text" id="goal-title-input" placeholder="Enter goal title" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--b);background:var(--s3);color:var(--t);font-family:'DM Sans',sans-serif;font-size:13px;" />
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:11px;color:var(--tm);text-transform:uppercase;font-weight:600;display:block;margin-bottom:6px;">Goal Details</label>
+        <input type="text" id="goal-sub-input" placeholder="e.g., 5 of 7 days completed" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--b);background:var(--s3);color:var(--t);font-family:'DM Sans',sans-serif;font-size:13px;" />
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-p" style="flex:1;" onclick="saveGoalEdit()">Save Changes</button>
+        <button class="btn btn-g" style="flex:1;" onclick="closeModal('goal-edit-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GOAL DELETE CONFIRM MODAL -->
+<div class="modal-overlay" id="goal-delete-modal">
+  <div class="modal" style="max-width:320px;">
+    <div class="modal-header">
+      <div class="modal-title">🗑 Delete Goal?</div>
+      <button class="modal-close" onclick="closeModal('goal-delete-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:13px;color:var(--tm);margin-bottom:20px;">Are you sure you want to delete this goal? This action cannot be undone.</div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-p" style="flex:1;" onclick="confirmDeleteGoal()">Delete</button>
+        <button class="btn btn-g" style="flex:1;" onclick="closeModal('goal-delete-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPENDING TRACKER MODAL -->
+<div class="modal-overlay" id="spending-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">💸 Track Spending</div>
+      <button class="modal-close" onclick="closeModal('spending-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="spending-option spent" onclick="logSpending(this)">
+        <div class="sopt-icon">🛍️</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Shopping</div>
+          <div class="sopt-sub">Clothes, gadgets, online</div>
+        </div>
+      </div>
+      <div class="spending-option spent" onclick="logSpending(this)">
+        <div class="sopt-icon">☕</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Café & Food</div>
+          <div class="sopt-sub">Coffee, meals, snacks</div>
+        </div>
+      </div>
+      <div class="spending-option spent" onclick="logSpending(this)">
+        <div class="sopt-icon">🚗</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Transport</div>
+          <div class="sopt-sub">Gas, parking, rides</div>
+        </div>
+      </div>
+      <div class="spending-option spent" onclick="logSpending(this)">
+        <div class="sopt-icon">🎬</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Entertainment</div>
+          <div class="sopt-sub">Movies, games, subscriptions</div>
+        </div>
+      </div>
+      <div class="spending-option spent" onclick="logSpending(this)">
+        <div class="sopt-icon">📝</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Custom Amount</div>
+          <div class="sopt-sub">Enter any spending</div>
+          <div class="sopt-amount"><input type="number" id="custom-spend" placeholder="$0.00" min="0" step="0.01"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAVING MODAL -->
+<div class="modal-overlay" id="saving-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">💰 Track Saving</div>
+      <button class="modal-close" onclick="closeModal('saving-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="spending-option saved" onclick="logSaving(this)">
+        <div class="sopt-icon">🏦</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Bank Transfer</div>
+          <div class="sopt-sub">Moved to savings</div>
+        </div>
+      </div>
+      <div class="spending-option saved" onclick="logSaving(this)">
+        <div class="sopt-icon">💳</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Skipped Purchase</div>
+          <div class="sopt-sub">Avoided spending</div>
+        </div>
+      </div>
+      <div class="spending-option saved" onclick="logSaving(this)">
+        <div class="sopt-icon">💵</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Found Money</div>
+          <div class="sopt-sub">Bonus, gift, cashback</div>
+        </div>
+      </div>
+      <div class="spending-option saved" onclick="logSaving(this)">
+        <div class="sopt-icon">📝</div>
+        <div class="sopt-content">
+          <div class="sopt-title">Custom Amount</div>
+          <div class="sopt-sub">Enter any savings</div>
+          <div class="sopt-amount"><input type="number" id="custom-save" placeholder="$0.00" min="0" step="0.01"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS MODAL -->
+<div class="modal-overlay" id="stats-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📊 Today's Stats</div>
+      <button class="modal-close" onclick="closeModal('stats-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="card" style="background:rgba(94,255,197,.08);border-color:rgba(94,255,197,.2);">
+        <div style="font-size:11px;color:var(--a3);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">💰 Financial</div>
+        <div id="stats-finance-val" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;">$18 spent · $5 saved</div>
+        <div id="stats-finance-detail" style="font-size:11px;color:var(--tm);">Budget: $45/day remaining • 71% complete</div>
+      </div>
+      <div class="card" style="background:rgba(255,184,77,.08);border-color:rgba(255,184,77,.2);">
+        <div style="font-size:11px;color:var(--a4);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">⏱ Time</div>
+        <div id="stats-time-val" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;">2h 14m screen</div>
+        <div id="stats-time-detail" style="font-size:11px;color:var(--tm);">Study goal: 1h 22m completed</div>
+      </div>
+      <div class="card" style="background:rgba(124,107,255,.08);border-color:rgba(124,107,255,.2);">
+        <div style="font-size:11px;color:var(--a1);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">✨ Streaks</div>
+        <div id="stats-streak-val" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;">4 day streak</div>
+        <div id="stats-streak-detail" style="font-size:11px;color:var(--tm);">Keep going! One more day to unlock 🔥</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABBAR -->
 <div class="tabbar">
   <div class="tab on" onclick="goTab('home')"><div class="tab-icon-wrap"><div class="tab-icon">🏠</div></div><div class="tab-lbl">Home</div></div>
   <div class="tab" onclick="goTab('feed')"><div class="tab-icon-wrap"><div class="tab-icon">✦</div><div class="tab-badge">8</div></div><div class="tab-lbl">Nudges</div></div>
@@ -559,23 +765,41 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;font-s
 </div>
 
 <script>
-const NUDGES={chill:["You've been scrolling for <em>42 minutes</em>. No judgment — but you did say you wanted to study today.","Hey, traffic's looking rough on your usual route. Might wanna head out a bit early.","You've got a <em>free 45 minutes</em> before your next thing. Maybe start that reading? No pressure.","It's getting late and you wanted to sleep by 10:30. Just a gentle heads up 🌙","You're near a coffee shop on a savings day. Totally your call though 🧊"],coach:["Traffic alert. <em>Successful people aren't late.</em> Leave NOW, take Oak Ave. Let's go.","Day 4 of your streak. <em>This is where people quit</em> — or push through. Which one are you?","You planned this study block. <em>Honor the commitment</em> you made to yourself. 30 minutes. Go.","That purchase goes against your savings goal. <em>Future you is watching this decision.</em>","Free hour detected. <em>Champions don't waste free hours.</em> What's your highest-leverage move right now?"],savage:["The highway is cooked. You're still sitting there. <em>Love that for you. 🛸🔴</em>","Bro you checked DoorDash 3 times in an hour and didn't order anything. <em>Just commit or close the app. 💀</em>","You've been 'about to study' for 2 hours. <em>The WiFi isn't the problem, bestie. 💅</em>","It's 11 PM. You said 10:30. <em>Your future self is not impressed.</em>","You opened the fridge 4 times in 20 minutes. <em>The food isn't changing. We need to talk.</em>"]};
+const NUDGES = {chill:["You've been scrolling for <em>42 minutes</em>. No judgment — but you did say you wanted to study today.","Hey, traffic's looking rough on your usual route. Might wanna head out a bit early.","You've got a <em>free 45 minutes</em> before your next thing. Maybe start that reading? No pressure.","It's getting late and you wanted to sleep by 10:30. Just a gentle heads up 🌙","You're near a coffee shop on a savings day. Totally your call though 🧊"],coach:["Traffic alert. <em>Successful people aren't late.</em> Leave NOW, take Oak Ave. Let's go.","Day 4 of your streak. <em>This is where people quit</em> — or push through. Which one are you?","You planned this study block. <em>Honor the commitment</em> you made to yourself. 30 minutes. Go.","That purchase goes against your savings goal. <em>Future you is watching this decision.</em>","Free hour detected. <em>Champions don't waste free hours.</em> What's your highest-leverage move right now?"],savage:["The highway is cooked. You're still sitting there. <em>Love that for you. 🛸🔴</em>","Bro you checked DoorDash 3 times in an hour and didn't order anything. <em>Just commit or close the app. 💀</em>","You've been 'about to study' for 2 hours. <em>The WiFi isn't the problem, bestie. 💅</em>","It's 11 PM. You said 10:30. <em>Your future self is not impressed.</em>","You opened the fridge 4 times in 20 minutes. <em>The food isn't changing. We need to talk.</em>"]};
+const APP_STATE = {spent:18,saved:5,screenTime:'2h 14m',streakDays:4,budgetRemaining:45,goalProgress:71};
 let currentPersona='chill',nudgeIndex=0;
 function obNext(s){document.getElementById('ob1').style.display='none';document.getElementById('ob2').style.display='none';document.getElementById('ob3').style.display='none';const e=document.getElementById('ob'+s);e.style.display='flex';e.style.flexDirection='column';e.style.flex='1';}
-function startApp(){document.getElementById('ob-screen').classList.remove('active');document.getElementById('ob-screen').style.display='none';document.getElementById('main-app').style.display='block';updateNudgeText();}
-function goTab(t){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('on'));document.getElementById('s-'+t).classList.add('active');const m={home:0,feed:1,traffic:2,goals:3,settings:4};const tabs=document.querySelectorAll('.tab');const activeTab=(m[t]!==undefined?tabs[m[t]]:null);if(activeTab){activeTab.classList.add('on');activeTab.classList.add('animate');activeTab.addEventListener('animationend',()=>activeTab.classList.remove('animate'),{once:true});} }
+function startApp(){document.getElementById('ob-screen').classList.remove('active');document.getElementById('ob-screen').style.display='none';document.getElementById('main-app').style.display='block';updateNudgeText();updateHomeStats();updateStatsModal();}
+function goTab(t){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(tb=>tb.classList.remove('on'));const target=document.getElementById('s-'+t);if(target){target.classList.add('active');const m={home:0,feed:1,traffic:2,goals:3,settings:4};const tabs=document.querySelectorAll('.tab');const activeTab=(m[t]!==undefined?tabs[m[t]]:null);if(activeTab){activeTab.classList.add('on');activeTab.classList.add('animate');activeTab.addEventListener('animationend',()=>activeTab.classList.remove('animate'),{once:true});}}}
 function updateNudgeText(){const n=NUDGES[currentPersona];document.getElementById('nudge-text').innerHTML=n[nudgeIndex%n.length];const l={chill:'🧊 Chill',coach:'⚡ Coach',savage:'🛸 Savage'};document.getElementById('persona-label').textContent=l[currentPersona];}
+function updateHomeStats(){document.getElementById('stat-screen').textContent=APP_STATE.screenTime;document.getElementById('stat-spent').textContent=`$${APP_STATE.spent}`;document.getElementById('stat-saved').textContent=`$${APP_STATE.saved}`;}
 function acceptNudge(){showToast("Let's go! 🚀");nudgeIndex++;setTimeout(updateNudgeText,400);}
 function dismissNudge(){nudgeIndex++;updateNudgeText();showToast('Nudge dismissed');}
-function dismissTraffic(){document.getElementById('traffic-nudge-card').style.display='none';showToast('Opening Maps... 🗺️');}
+function dismissTraffic(){document.getElementById('traffic-nudge-card').style.display='none';showToast('Traffic alert dismissed.');}
+function openMaps(){const card=document.getElementById('traffic-nudge-card');if(card){card.querySelectorAll('.route-status')[1].textContent='🟢 Route set';}showToast('Route opened in Maps.');}
+function snoozeTraffic(){const card=document.getElementById('traffic-nudge-card');if(card){const badge=card.querySelector('.traffic-badge');if(badge){badge.textContent='Traffic Alert · Snoozed';}}showToast('Traffic alert snoozed for 5 minutes.');}
 function switchPersona(el){document.querySelectorAll('#persona-switch .persona').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');currentPersona=el.dataset.p;nudgeIndex=0;updateNudgeText();const n={chill:'Chill 🧊',coach:'Coach ⚡',savage:'Savage 🛸'};showToast('Personality: '+n[currentPersona]);document.querySelectorAll('#persona-sel .persona-sel-item').forEach(p=>{p.classList.toggle('sel',p.dataset.persona===currentPersona);});}
-function toggleSwitch(el){el.classList.toggle('off');}
+function toggleSwitch(el){el.classList.toggle('off');showToast(`${el.previousElementSibling.querySelector('.sr-title')?.textContent || 'Setting'} ${el.classList.contains('off') ? 'off' : 'on'}`);}
 function filterFeed(type,el){document.querySelectorAll('#feed-filters .filter').forEach(f=>f.classList.remove('on'));el.classList.add('on');document.querySelectorAll('#feed-list .feed-card').forEach(card=>{card.style.display=(type==='all'||card.dataset.type===type)?'block':'none';});}
-function shareNudge(){showToast('Nudge card copied! 📋');}
-function openAskAI(){const box=document.getElementById('ai-box');if(box.style.display!=='none'){box.style.display='none';return;}box.style.display='block';document.getElementById('ai-loading').style.display='flex';document.getElementById('ai-response').style.display='none';const r={chill:["Based on your week, you're doing pretty well! You've stuck to your study habit 4 days in a row and saved $18 more than last week. The traffic alerts saved you from being late twice. One thing — Thursday evenings are when you tend to overspend. Might be worth a heads up next Thursday?","Your biggest win this week was the commute stuff — taking Oak Ave saved you 28 minutes total. For study goals, 38 more minutes tonight would finish it out. No rush though.","Sleep is your most consistent habit. Savings is on track but has Thursday risk. Traffic goal improved by 2 points this week. Pretty solid overall."],coach:["LISTEN. You are 71% to your savings goal with 18 days left. The Thursday overspending needs to STOP TODAY. Traffic alerts are working — 80% on-time rate is up from 60%. That's discipline paying off. NOW LET'S CLOSE OUT THAT STUDY SESSION.","You want real talk? Study goal at 68% means 38 minutes tonight is NON-NEGOTIABLE. $58 from your savings target. You're close. Don't blink now.","Your streak is at 4 days. Don't break it tonight. The data says Thursday is your weakness — we're going to BEAT THAT PATTERN this week."],savage:["Okay real talk? You're doing better than you think but also worse than you could be. Your Thursday spending is a whole character arc. And your study goal is giving 'I'll definitely do it later' energy. Also you've been late 2 of 10 times even WITH traffic alerts. Two. Times. 💀","The audacity to ask me how you're doing when you closed DoorDash 3 times today. That's not a spending problem, that's a commitment problem bestie. Traffic thing? You've used Oak Ave twice. Growth.","Fine. Sleep: excellent. Savings: on track but Thursday is giving 'self-sabotage speedrun'. Study: 38 minutes away from your goal and you're asking ME questions instead. Go study. 💅"]};setTimeout(()=>{document.getElementById('ai-loading').style.display='none';const resp=document.getElementById('ai-response');resp.style.display='block';const opts=r[currentPersona];resp.textContent=opts[Math.floor(Math.random()*opts.length)];},1800);}
+function shareNudge(el){const card = el.closest('.feed-card');if(card){const text = card.querySelector('.fc-txt')?.textContent || card.textContent;navigator.clipboard?.writeText(text.trim()).then(()=>showToast('Nudge copied to clipboard!')).catch(()=>showToast('Nudge copied.'));}else{showToast('Nudge copied!');}}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
-document.querySelectorAll('#persona-sel .persona-sel-item').forEach(item=>{item.addEventListener('click',()=>{document.querySelectorAll('#persona-sel .persona-sel-item').forEach(i=>i.classList.remove('sel'));item.classList.add('sel');currentPersona=item.dataset.persona;});});
-document.querySelectorAll('#goal-grid .ob-item').forEach(item=>{item.addEventListener('click',()=>item.classList.toggle('sel'));});
+function openAskAI(){toggleQuickMenu(false);const box=document.getElementById('ai-box');if(box.style.display!=='none'){box.style.display='none';return;}box.style.display='block';document.getElementById('ai-loading').style.display='flex';document.getElementById('ai-response').style.display='none';const r={chill:["Based on your week, you're doing pretty well! You've stuck to your study habit 4 days in a row and saved $18 more than last week. The traffic alerts saved you from being late twice. One thing — Thursday evenings are when you tend to overspend. Might be worth a heads up next Thursday?","Your biggest win this week was the commute stuff — taking Oak Ave saved you 28 minutes total. For study goals, 38 more minutes tonight would finish it out. No rush though.","Sleep is your most consistent habit. Savings is on track but has Thursday risk. Traffic goal improved by 2 points this week. Pretty solid overall."],coach:["LISTEN. You are 71% to your savings goal with 18 days left. The Thursday overspending needs to STOP TODAY. Traffic alerts are working — 80% on-time rate is up from 60%. That's discipline paying off. NOW LET'S CLOSE OUT THAT STUDY SESSION.","You want real talk? Study goal at 68% means 38 minutes tonight is NON-NEGOTIABLE. $58 from your savings target. You're close. Don't blink now.","Your streak is at 4 days. Don't break it tonight. The data says Thursday is your weakness — we're going to BEAT THAT PATTERN this week."],savage:["Okay real talk? You're doing better than you think but also worse than you could be. Your Thursday spending is a whole character arc. And your study goal is giving 'I'll definitely do it later' energy. Also you've been late 2 of 10 times even WITH traffic alerts. Two. Times. 💀","The audacity to ask me how you're doing when you closed DoorDash 3 times today. That's not a spending problem, that's a commitment problem bestie. Traffic thing? You've used Oak Ave twice. Growth.","Fine. Sleep: excellent. Savings: on track but Thursday is giving 'self-sabotage speedrun'. Study: 38 minutes away from your goal and you're asking ME questions instead. Go study. 💅"]};setTimeout(()=>{document.getElementById('ai-loading').style.display='none';const resp=document.getElementById('ai-response');resp.style.display='block';const opts=r[currentPersona];resp.textContent=opts[Math.floor(Math.random()*opts.length)];},1800);}
+function openSpendingModal(){toggleQuickMenu(false);document.getElementById('spending-modal').classList.add('active');setTimeout(()=>document.getElementById('custom-spend')?.focus(),200);}
+function openSavingModal(){toggleQuickMenu(false);document.getElementById('saving-modal').classList.add('active');setTimeout(()=>document.getElementById('custom-save')?.focus(),200);}
+function openStatsModal(){toggleQuickMenu(false);updateStatsModal();document.getElementById('stats-modal').classList.add('active');}
+function toggleQuickMenu(force){const menu=document.getElementById('fab-menu');const btn=document.getElementById('fab-btn');const isActive=menu.classList.contains('active');const show=typeof force==='boolean'?force:!isActive;menu.classList.toggle('active',show);btn.textContent=show?'×':'＋';}
+function closeModal(id){document.getElementById(id).classList.remove('active');}
+function logSpending(el){const customInput=document.getElementById('custom-spend');const title=el.querySelector('.sopt-title')?.textContent||'Spending';const values={Shopping:24,'Café & Food':12,Transport:8,Entertainment:16};let amountValue=0;let amountLabel='';if(title==='Custom Amount'){amountValue=parseFloat(customInput.value)||5;amountLabel=`$${amountValue.toFixed(2)}`;customInput.value='';} else {amountValue=values[title]||5;amountLabel=`$${amountValue.toFixed(0)}`;}APP_STATE.spent=Math.round((APP_STATE.spent+amountValue)*100)/100;showToast(`💸 Logged ${amountLabel}`);updateHomeStats();updateStatsModal();closeModal('spending-modal');setTimeout(()=>{document.getElementById('spending-modal').classList.remove('active');},300);}
+function logSaving(el){const customInput=document.getElementById('custom-save');const title=el.querySelector('.sopt-title')?.textContent||'Saved';const values={"Bank Transfer":20,"Skipped Purchase":10,"Found Money":15};let amountValue=0;let amountLabel='';if(title==='Custom Amount'){amountValue=parseFloat(customInput.value)||10;amountLabel=`$${amountValue.toFixed(2)}`;customInput.value='';} else {amountValue=values[title]||10;amountLabel=`$${amountValue.toFixed(0)}`;}APP_STATE.saved=Math.round((APP_STATE.saved+amountValue)*100)/100;showToast(`💰 Tracked ${amountLabel}`);updateHomeStats();updateStatsModal();closeModal('saving-modal');setTimeout(()=>{document.getElementById('saving-modal').classList.remove('active');},300);}
+function createGoalCard(icon,title,subtitle,progress,details){const card=document.createElement('div');card.className='goal-card';card.innerHTML=`<div class="goal-hdr"><div style="display:flex;gap:10px;align-items:center;"><div class="goal-icon">${icon}</div><div><div class="goal-name">${title}</div><div class="goal-sub">${subtitle}</div></div></div><div class="goal-actions"><button class="goal-action" onclick="editGoal(this)">✎</button><button class="goal-action" onclick="deleteGoal(this)">🗑</button></div></div><div class="prog-wrap"><div class="prog-fill" style="background:linear-gradient(90deg,var(--a3),var(--a1));width:${progress};"></div></div><div class="goal-meta"><span>${details[0]}</span><span>${details[1]}</span></div>`;return card;}
+function addGoal(){const addButton=document.querySelector('#s-goals .add-goal');const title=prompt('New goal title','New health goal');if(title===null||!title.trim())return;const subtitle=prompt('Goal subtitle','Complete it by tonight');if(subtitle===null||!subtitle.trim())return;const progress='20%';const details=['20% complete','Today'];const card=createGoalCard('✨',title,subtitle,progress,details);addButton.parentElement.insertBefore(card,addButton);showToast('Goal added');}
+function editGoal(button){const card=button.closest('.goal-card');if(!card)return;window.currentEditCard=card;const titleEl=card.querySelector('.goal-name');const subEl=card.querySelector('.goal-sub');document.getElementById('goal-title-input').value=titleEl.textContent;document.getElementById('goal-sub-input').value=subEl.textContent;document.getElementById('goal-edit-modal').classList.add('active');setTimeout(()=>document.getElementById('goal-title-input')?.focus(),300);}
+function saveGoalEdit(){const card=window.currentEditCard;if(!card)return;const titleInput=document.getElementById('goal-title-input').value.trim();const subInput=document.getElementById('goal-sub-input').value.trim();if(!titleInput||!subInput){showToast('Please fill in all fields');return;}
+const titleEl=card.querySelector('.goal-name');const subEl=card.querySelector('.goal-sub');titleEl.textContent=titleInput;subEl.textContent=subInput;closeModal('goal-edit-modal');showToast('Goal updated 💹');}
+function deleteGoal(button){window.currentDeleteCard=button.closest('.goal-card');if(!window.currentDeleteCard)return;document.getElementById('goal-delete-modal').classList.add('active');}
+function confirmDeleteGoal(){const card=window.currentDeleteCard;if(!card)return;card.remove();closeModal('goal-delete-modal');showToast('Goal deleted 🗑');}
+function updateStatsModal(){document.getElementById('stats-finance-val').textContent=`$${APP_STATE.spent} spent · $${APP_STATE.saved} saved`;document.getElementById('stats-finance-detail').textContent=`Budget: $${APP_STATE.budgetRemaining}/day remaining • ${APP_STATE.goalProgress}% complete`;document.getElementById('stats-time-val').textContent=`${APP_STATE.screenTime} screen`;document.getElementById('stats-streak-val').textContent=`${APP_STATE.streakDays} day streak`;}
+document.querySelectorAll('.modal-overlay').forEach(overlay=>{overlay.addEventListener('click',(e)=>{if(e.target===overlay)closeModal(overlay.id);});});
 </script>
 </body>
 </html>
